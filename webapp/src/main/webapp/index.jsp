@@ -4,336 +4,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShowTime</title>
+    <title>ShowTime - Movies, Events, Plays & More</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         body {
-            background-color: #121212;
-            color: #ffffff;
-            line-height: 1.6;
+            background-color: #0f0f0f;
+            color: #fff;
+            line-height: 1.5;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        button {
-            cursor: pointer;
-        }
+        a { text-decoration: none; color: inherit; }
 
-        /* Header/Navbar */
+        /* Header */
         header {
-            background-color: #000000;
-            padding: 10px 20px;
+            background: linear-gradient(to bottom, #000, #111);
+            padding: 15px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: #ff0000; /* Red accent */
+            color: #e50914; /* Netflix-red like accent, close to BMS red */
         }
-        .navbar {
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
-            flex: 1;
-            justify-content: flex-end;
+            gap: 25px;
         }
-        .location-selector {
-            background-color: #333333;
+        .location {
+            background: #222;
             border: none;
-            color: #ffffff;
-            padding: 8px;
-            border-radius: 4px;
+            color: #ddd;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .search-container {
+            position: relative;
+            width: 450px;
         }
         .search-bar {
-            flex: 1;
-            max-width: 400px;
-            background-color: #333333;
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background: #222;
             border: none;
-            padding: 10px;
-            border-radius: 4px;
-            color: #ffffff;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 15px;
         }
-        .search-bar::placeholder {
-            color: #aaaaaa;
+        .search-bar::placeholder { color: #888; }
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
         }
         .login-btn {
-            background-color: #ff0000;
+            background: #e50914;
             border: none;
-            padding: 10px 20px;
-            color: #ffffff;
-            border-radius: 4px;
+            padding: 10px 24px;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero Banner - larger, promotional style */
         .hero {
             position: relative;
-            height: 400px;
+            height: 520px;
             overflow: hidden;
-            margin: 20px 0;
         }
-        .banner-slider {
+        .hero img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: brightness(0.7);
         }
-        .hero-text {
+        .hero-overlay {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 4px;
+            bottom: 60px;
+            left: 60px;
+            max-width: 600px;
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 12px;
         }
-        .hero-text h1 {
-            font-size: 32px;
+        .hero-overlay h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
         }
-        .hero-text p {
-            font-size: 18px;
+        .hero-overlay p {
+            font-size: 22px;
+            color: #ddd;
         }
 
-        /* Section Styles */
+        /* Sections */
         section {
-            padding: 20px;
+            padding: 50px 40px;
         }
         h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #ff0000;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 600;
         }
-        .grid {
+        .movie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
         }
         .card {
-            background-color: #1e1e1e;
-            border-radius: 8px;
+            position: relative;
+            background: #1a1a1a;
+            border-radius: 12px;
             overflow: hidden;
-            text-align: center;
-            padding: 10px;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(229,9,20,0.3);
         }
         .card img {
             width: 100%;
-            height: auto;
-            border-radius: 4px;
+            height: 320px;
+            object-fit: cover;
+        }
+        .card-info {
+            padding: 15px;
+            text-align: center;
         }
         .card h3 {
-            margin: 10px 0;
             font-size: 18px;
+            margin-bottom: 8px;
         }
-        .card p {
-            font-size: 14px;
-            color: #aaaaaa;
+        .card-details {
+            font-size: 13px;
+            color: #bbb;
+            margin-bottom: 10px;
         }
-        .rating {
-            background-color: #ff0000;
-            color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin: 5px 0;
-            display: inline-block;
+        .rating-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #e50914;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
         }
         .book-btn {
-            background-color: #ff0000;
+            background: #e50914;
             border: none;
-            padding: 10px;
-            color: #ffffff;
             width: 100%;
-            border-radius: 4px;
-            margin-top: 10px;
+            padding: 14px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 0 0 12px 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .book-btn:hover { background: #b20710; }
+
+        /* Events - slightly different accent */
+        .event-grid .card {
+            border: 1px solid #333;
+        }
+        .event-grid .book-btn {
+            background: #0066cc;
+        }
+        .event-grid .book-btn:hover {
+            background: #0055aa;
         }
 
         /* Footer */
         footer {
-            background-color: #000000;
-            padding: 20px;
+            background: #000;
+            padding: 40px 40px 20px;
             text-align: center;
-        }
-        .footer-links {
-            margin-bottom: 10px;
+            color: #888;
+            font-size: 14px;
         }
         .footer-links a {
-            margin: 0 10px;
-            color: #aaaaaa;
+            margin: 0 15px;
+            color: #ccc;
         }
         .social-icons i {
-            margin: 0 10px;
-            font-size: 20px;
-            color: #ff0000;
+            font-size: 24px;
+            margin: 0 15px;
+            color: #e50914;
         }
 
-        /* Responsiveness */
+        @media (max-width: 1024px) {
+            header { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .search-container { width: 100%; max-width: none; }
+            .hero { height: 400px; }
+            .hero-overlay { left: 20px; bottom: 40px; padding: 20px; }
+            .hero-overlay h1 { font-size: 36px; }
+        }
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .navbar {
-                justify-content: center;
-                width: 100%;
-            }
-            .search-bar {
-                max-width: none;
-            }
-            .hero {
-                height: 200px;
-            }
-            .hero-text h1 {
-                font-size: 24px;
-            }
-            .hero-text p {
-                font-size: 14px;
-            }
+            .hero { height: 300px; }
+            .hero-overlay h1 { font-size: 28px; }
+            .hero-overlay p { font-size: 16px; }
+            section { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header/Navbar -->
+
     <header>
         <div class="logo">ShowTime</div>
-        <div class="navbar">
-            <select class="location-selector">
+        <div class="nav-right">
+            <select class="location">
                 <option>Bangalore</option>
                 <option>Chennai</option>
                 <option>Hyderabad</option>
                 <option>Mumbai</option>
             </select>
-            <input type="text" class="search-bar" placeholder="Search for Movies, Events, Plays, Sports">
-            <button class="login-btn">Login / Signup</button>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search for Movies, Events, Plays, Sports">
+            </div>
+            <button class="login-btn">Sign In</button>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero - more like BookMyShow promo banner -->
     <div class="hero">
-        <img id="banner-slider" class="banner-slider" src="https://picsum.photos/1920/400?random=10" alt="Banner">
-        <div class="hero-text">
-            <h1>Now Showing</h1>
-            <p>Upcoming Movies & Events</p>
+        <img id="banner-slider" src="https://picsum.photos/1920/1080?random=20" alt="Promo Banner">
+        <div class="hero-overlay">
+            <h1>LOVE IS SHARING YOUR POPCORN</h1>
+            <p>Book your tickets & enjoy the magic of cinema</p>
         </div>
     </div>
 
-    <!-- Movies Section -->
-    <section id="movies">
-        <h2>Movies</h2>
-        <div class="grid">
+    <!-- Movies - Recommended style -->
+    <section>
+        <h2>Recommended Movies</h2>
+        <div class="movie-grid">
             <div class="card">
-                <img src="https://picsum.photos/200/300?random=1" alt="Movie Poster">
-                <h3>Movie Title 1</h3>
-                <p>Action, Thriller</p>
-                <p>English</p>
-                <span class="rating">8.5</span>
-                <button class="book-btn">Book Tickets</button>
+                <span class="rating-badge">8.5</span>
+                <img src="https://picsum.photos/220/320?random=1" alt="Movie 1">
+                <div class="card-info">
+                    <h3>Movie Title 1</h3>
+                    <div class="card-details">Action, Thriller • English • 2D</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
             </div>
             <div class="card">
-                <img src="https://picsum.photos/200/300?random=2" alt="Movie Poster">
-                <h3>Movie Title 2</h3>
-                <p>Comedy, Drama</p>
-                <p>Hindi</p>
-                <span class="rating">7.2</span>
-                <button class="book-btn">Book Tickets</button>
+                <span class="rating-badge">7.2</span>
+                <img src="https://picsum.photos/220/320?random=2" alt="Movie 2">
+                <div class="card-info">
+                    <h3>Movie Title 2</h3>
+                    <div class="card-details">Comedy, Drama • Hindi • 2D</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
             </div>
             <div class="card">
-                <img src="https://picsum.photos/200/300?random=3" alt="Movie Poster">
-                <h3>Movie Title 3</h3>
-                <p>Sci-Fi, Adventure</p>
-                <p>English</p>
-                <span class="rating">9.0</span>
-                <button class="book-btn">Book Tickets</button>
+                <span class="rating-badge">9.0</span>
+                <img src="https://picsum.photos/220/320?random=3" alt="Movie 3">
+                <div class="card-info">
+                    <h3>Movie Title 3</h3>
+                    <div class="card-details">Sci-Fi, Adventure • English • IMAX</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
             </div>
             <div class="card">
-                <img src="https://picsum.photos/200/300?random=4" alt="Movie Poster">
-                <h3>Movie Title 4</h3>
-                <p>Horror, Mystery</p>
-                <p>Tamil</p>
-                <span class="rating">6.8</span>
-                <button class="book-btn">Book Tickets</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events">
-        <h2>Events</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="https://picsum.photos/200/300?random=5" alt="Comedy Show">
-                <h3>Comedy Shows</h3>
-                <p>Stand-up Comedy Night</p>
-                <button class="book-btn">Book Tickets</button>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/200/300?random=6" alt="Live Concert">
-                <h3>Live Concerts</h3>
-                <p>Rock Music Festival</p>
-                <button class="book-btn">Book Tickets</button>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/200/300?random=7" alt="Sports Event">
-                <h3>Sports Events</h3>
-                <p>IPL Cricket Match</p>
-                <button class="book-btn">Book Tickets</button>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/200/300?random=8" alt="Theatre Play">
-                <h3>Theatre Plays</h3>
-                <p>Drama Performance</p>
-                <button class="book-btn">Book Tickets</button>
+                <span class="rating-badge">6.8</span>
+                <img src="https://picsum.photos/220/320?random=4" alt="Movie 4">
+                <div class="card-info">
+                    <h3>Movie Title 4</h3>
+                    <div class="card-details">Horror, Mystery • Tamil • 2D</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Events -->
+    <section>
+        <h2>Events This Week</h2>
+        <div class="event-grid movie-grid">
+            <div class="card">
+                <img src="https://picsum.photos/220/320?random=5" alt="Comedy">
+                <div class="card-info">
+                    <h3>Comedy Shows</h3>
+                    <div class="card-details">Stand-up Night • English/Hindi</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
+            </div>
+            <!-- Add 3 more similar event cards if needed -->
+            <div class="card">
+                <img src="https://picsum.photos/220/320?random=6" alt="Concert">
+                <div class="card-info">
+                    <h3>Live Concerts</h3>
+                    <div class="card-details">Rock Festival • Multi-language</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/220/320?random=7" alt="Sports">
+                <div class="card-info">
+                    <h3>Sports Events</h3>
+                    <div class="card-details">Cricket Match • Live</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/220/320?random=8" alt="Theatre">
+                <div class="card-info">
+                    <h3>Theatre Plays</h3>
+                    <div class="card-details">Drama Performance</div>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <div class="footer-links">
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Privacy Policy</a>
-        </div>
         <div class="social-icons">
             <i class="fab fa-facebook-f"></i>
             <i class="fab fa-twitter"></i>
             <i class="fab fa-instagram"></i>
             <i class="fab fa-youtube"></i>
         </div>
-        <p style="margin-top: 15px; color: #777;">© 2026 ShowTime. All rights reserved.</p>
+        <div class="footer-links" style="margin: 20px 0;">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <p>© 2026 ShowTime. All rights reserved.</p>
     </footer>
 
-    <!-- Simple Banner Slider -->
     <script>
         const banners = [
-            "https://picsum.photos/1920/400?random=10",
-            "https://picsum.photos/1920/400?random=11",
-            "https://picsum.photos/1920/400?random=12"
+            "https://picsum.photos/1920/1080?random=20",
+            "https://picsum.photos/1920/1080?random=21",
+            "https://picsum.photos/1920/1080?random=22"
         ];
-        let currentBanner = 0;
+        let idx = 0;
         const slider = document.getElementById('banner-slider');
-
-        function changeBanner() {
-            currentBanner = (currentBanner + 1) % banners.length;
-            slider.src = banners[currentBanner];
-        }
-
-        setInterval(changeBanner, 5000);
+        setInterval(() => {
+            idx = (idx + 1) % banners.length;
+            slider.src = banners[idx];
+        }, 6000);
     </script>
 </body>
 </html>
