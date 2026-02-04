@@ -224,7 +224,7 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <img id="banner-slider" class="banner-slider" src="https://placehold.co/1920x400/111/eee?text=Now+Showing" alt="Banner">
+        <img id="banner-slider" class="banner-slider" src="https://picsum.photos/1920/400?random=10" alt="Banner">
         <div class="hero-text">
             <h1>Now Showing</h1>
             <p>Upcoming Movies & Events</p>
@@ -236,7 +236,7 @@
         <h2>Movies</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://placehold.co/200x300/222/aaa?text=Movie+1" alt="Movie Poster">
+                <img src="https://picsum.photos/200/300?random=1" alt="Movie Poster">
                 <h3>Movie Title 1</h3>
                 <p>Action, Thriller</p>
                 <p>English</p>
@@ -244,7 +244,7 @@
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://placehold.co/200x300/222/aaa?text=Movie+2" alt="Movie Poster">
+                <img src="https://picsum.photos/200/300?random=2" alt="Movie Poster">
                 <h3>Movie Title 2</h3>
                 <p>Comedy, Drama</p>
                 <p>Hindi</p>
@@ -252,7 +252,7 @@
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://placehold.co/200x300/222/aaa?text=Movie+3" alt="Movie Poster">
+                <img src="https://picsum.photos/200/300?random=3" alt="Movie Poster">
                 <h3>Movie Title 3</h3>
                 <p>Sci-Fi, Adventure</p>
                 <p>English</p>
@@ -260,7 +260,7 @@
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://placehold.co/200x300/222/aaa?text=Movie+4" alt="Movie Poster">
+                <img src="https://picsum.photos/200/300?random=4" alt="Movie Poster">
                 <h3>Movie Title 4</h3>
                 <p>Horror, Mystery</p>
                 <p>Tamil</p>
@@ -275,25 +275,25 @@
         <h2>Events</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://placehold.co/200x300/333/bbb?text=Comedy+Show" alt="Comedy Show">
+                <img src="https://picsum.photos/200/300?random=5" alt="Comedy Show">
                 <h3>Comedy Shows</h3>
                 <p>Stand-up Comedy Night</p>
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://placehold.co/200x300/333/bbb?text=Live+Concert" alt="Live Concert">
+                <img src="https://picsum.photos/200/300?random=6" alt="Live Concert">
                 <h3>Live Concerts</h3>
                 <p>Rock Music Festival</p>
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://placehold.co/200x300/333/bbb?text=Cricket+Match" alt="Sports Event">
+                <img src="https://picsum.photos/200/300?random=7" alt="Sports Event">
                 <h3>Sports Events</h3>
                 <p>IPL Cricket Match</p>
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://placehold.co/200x300/333/bbb?text=Theatre+Play" alt="Theatre Play">
+                <img src="https://picsum.photos/200/300?random=8" alt="Theatre Play">
                 <h3>Theatre Plays</h3>
                 <p>Drama Performance</p>
                 <button class="book-btn">Book Tickets</button>
@@ -321,9 +321,9 @@
     <!-- Simple Banner Slider -->
     <script>
         const banners = [
-            "https://placehold.co/1920x400/111/eee?text=Now+Showing",
-            "https://placehold.co/1920x400/222/ddd?text=Upcoming+Movies",
-            "https://placehold.co/1920x400/333/ccc?text=Events+This+Week"
+            "https://picsum.photos/1920/400?random=10",
+            "https://picsum.photos/1920/400?random=11",
+            "https://picsum.photos/1920/400?random=12"
         ];
         let currentBanner = 0;
         const slider = document.getElementById('banner-slider');
