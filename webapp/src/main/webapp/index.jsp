@@ -4,66 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShowTime - Movies, Events, Plays & More</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>ShowTime - Book Movie Tickets, Events & More</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         body {
-            background-color: #0f0f0f;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
             color: #fff;
-            line-height: 1.5;
         }
-        a { text-decoration: none; color: inherit; }
 
-        /* Header */
-        header {
-            background: linear-gradient(to bottom, #000, #111);
-            padding: 15px 40px;
+        /* Top Bar */
+        .top-bar {
+            background: #000;
+            padding: 8px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            font-size: 14px;
         }
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #e50914; /* Netflix-red like accent, close to BMS red */
-        }
-        .nav-right {
+        .top-bar-left {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 30px;
         }
-        .location {
-            background: #222;
-            border: none;
-            color: #ddd;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-size: 14px;
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff2d55;
         }
         .search-container {
             position: relative;
-            width: 450px;
+            width: 520px;
         }
-        .search-bar {
+        .search-input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
-            background: #222;
-            border: none;
-            border-radius: 30px;
-            color: #fff;
+            padding: 12px 20px 12px 50px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: white;
             font-size: 15px;
         }
-        .search-bar::placeholder { color: #888; }
+        .search-input::placeholder { color: #888; }
         .search-icon {
             position: absolute;
             left: 18px;
@@ -71,298 +58,257 @@
             transform: translateY(-50%);
             color: #888;
         }
-        .login-btn {
-            background: #e50914;
-            border: none;
-            padding: 10px 24px;
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .location-select {
+            background: #111;
+            border: 1px solid #333;
             color: white;
-            font-weight: bold;
+            padding: 8px 14px;
+            border-radius: 6px;
+        }
+        .sign-in-btn {
+            background: #ff2d55;
+            border: none;
+            padding: 8px 20px;
+            color: white;
+            font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
         }
 
-        /* Hero Banner - larger, promotional style */
-        .hero {
-            position: relative;
-            height: 520px;
-            overflow: hidden;
+        /* Main Nav */
+        .main-nav {
+            background: #111;
+            padding: 0 40px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #222;
         }
-        .hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7);
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            font-weight: 500;
         }
-        .hero-overlay {
-            position: absolute;
-            bottom: 60px;
-            left: 60px;
-            max-width: 600px;
-            background: rgba(0,0,0,0.6);
-            padding: 30px;
-            border-radius: 12px;
-        }
-        .hero-overlay h1 {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
-        .hero-overlay p {
-            font-size: 22px;
+        .nav-links a {
             color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .nav-links a:hover { color: white; }
+        .nav-right {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #ccc;
         }
 
-        /* Sections */
-        section {
-            padding: 50px 40px;
+        /* Hero Banner */
+        .hero {
+            height: 420px;
+            position: relative;
+            background: linear-gradient(to right, #0d1b3a 40%, transparent 60%);
+            display: flex;
+            align-items: center;
         }
-        h2 {
-            font-size: 32px;
+        .hero-poster {
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .hero-content {
+            padding-left: 80px;
+            max-width: 600px;
+        }
+        .hero-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .hero-subtitle {
+            font-size: 22px;
             margin-bottom: 30px;
-            color: #fff;
+            color: #ddd;
+        }
+        .promo-code {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed #ff2d55;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        /* Recommended Section */
+        .section {
+            padding: 50px 80px;
+        }
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
             font-weight: 600;
         }
-        .movie-grid {
+        .movies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 25px;
         }
-        .card {
-            position: relative;
-            background: #1a1a1a;
-            border-radius: 12px;
+        .movie-card {
+            background: #111;
+            border-radius: 10px;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: transform 0.25s;
         }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(229,9,20,0.3);
+        .movie-card:hover {
+            transform: scale(1.04);
         }
-        .card img {
+        .movie-poster {
             width: 100%;
             height: 320px;
             object-fit: cover;
         }
-        .card-info {
-            padding: 15px;
+        .movie-info {
+            padding: 12px;
             text-align: center;
         }
-        .card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
+        .movie-title {
+            font-size: 16px;
+            margin-bottom: 6px;
         }
-        .card-details {
-            font-size: 13px;
-            color: #bbb;
-            margin-bottom: 10px;
-        }
-        .rating-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: #e50914;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
+        .rating {
+            color: #ff2d55;
             font-weight: bold;
+            margin-bottom: 4px;
         }
-        .book-btn {
-            background: #e50914;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 0 0 12px 12px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .book-btn:hover { background: #b20710; }
-
-        /* Events - slightly different accent */
-        .event-grid .card {
-            border: 1px solid #333;
-        }
-        .event-grid .book-btn {
-            background: #0066cc;
-        }
-        .event-grid .book-btn:hover {
-            background: #0055aa;
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            padding: 40px 40px 20px;
-            text-align: center;
+        .votes {
             color: #888;
-            font-size: 14px;
-        }
-        .footer-links a {
-            margin: 0 15px;
-            color: #ccc;
-        }
-        .social-icons i {
-            font-size: 24px;
-            margin: 0 15px;
-            color: #e50914;
+            font-size: 13px;
         }
 
         @media (max-width: 1024px) {
-            header { flex-direction: column; gap: 15px; padding: 15px 20px; }
-            .search-container { width: 100%; max-width: none; }
-            .hero { height: 400px; }
-            .hero-overlay { left: 20px; bottom: 40px; padding: 20px; }
-            .hero-overlay h1 { font-size: 36px; }
+            .hero { height: 360px; }
+            .hero-content { padding-left: 40px; }
+            .hero-poster { right: 40px; width: 260px; }
+            .section { padding: 40px 40px; }
         }
         @media (max-width: 768px) {
-            .hero { height: 300px; }
-            .hero-overlay h1 { font-size: 28px; }
-            .hero-overlay p { font-size: 16px; }
-            section { padding: 30px 20px; }
+            .top-bar, .main-nav { flex-direction: column; gap: 12px; padding: 12px 20px; }
+            .search-container { width: 100%; }
+            .hero { background: #0d1b3a; text-align: center; }
+            .hero-content { padding: 0 20px; }
+            .hero-poster { position: static; margin: 20px auto; transform: none; }
+            .hero-title { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">ShowTime</div>
-        <div class="nav-right">
-            <select class="location">
-                <option>Bangalore</option>
-                <option>Chennai</option>
-                <option>Hyderabad</option>
-                <option>Mumbai</option>
-            </select>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="logo">ShowTime</div>
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-bar" placeholder="Search for Movies, Events, Plays, Sports">
+                <input type="text" class="search-input" placeholder="Search for Movies, Events, Plays, Sports...">
             </div>
-            <button class="login-btn">Sign In</button>
         </div>
-    </header>
-
-    <!-- Hero - more like BookMyShow promo banner -->
-    <div class="hero">
-        <img id="banner-slider" src="https://picsum.photos/1920/1080?random=20" alt="Promo Banner">
-        <div class="hero-overlay">
-            <h1>LOVE IS SHARING YOUR POPCORN</h1>
-            <p>Book your tickets & enjoy the magic of cinema</p>
+        <div class="top-bar-right">
+            <select class="location-select">
+                <option>Bengaluru</option>
+                <option>Mumbai</option>
+                <option>Delhi</option>
+                <option>Hyderabad</option>
+                <option>Chennai</option>
+            </select>
+            <button class="sign-in-btn">Sign In</button>
         </div>
     </div>
 
-    <!-- Movies - Recommended style -->
-    <section>
-        <h2>Recommended Movies</h2>
-        <div class="movie-grid">
-            <div class="card">
-                <span class="rating-badge">8.5</span>
-                <img src="https://picsum.photos/220/320?random=1" alt="Movie 1">
-                <div class="card-info">
-                    <h3>Movie Title 1</h3>
-                    <div class="card-details">Action, Thriller • English • 2D</div>
-                    <button class="book-btn">Book Tickets</button>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-links">
+            <a href="#">Movies</a>
+            <a href="#">Stream</a>
+            <a href="#">Events</a>
+            <a href="#">Plays</a>
+            <a href="#">Activities</a>
+            <a href="#">Buzz</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">ListYourShow</a>
+            <a href="#">Corporates</a>
+            <a href="#">Offers</a>
+            <a href="#">Gift Cards</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-title">STREAM</div>
+            <div class="hero-subtitle">LOVE IS SHARING YOUR POPCORN 🍿</div>
+            <div class="promo-code">
+                AT 90% OFF* USE CODE <strong>SAAVO</strong>
+            </div>
+        </div>
+        <img class="hero-poster" src="https://picsum.photos/320/480?random=30" alt="Featured Movie Poster">
+    </div>
+
+    <!-- Recommended Movies -->
+    <section class="section">
+        <div class="section-title">Recommended Movies</div>
+        <div class="movies-grid">
+            <div class="movie-card">
+                <img class="movie-poster" src="https://picsum.photos/220/320?random=41" alt="Movie 1">
+                <div class="movie-info">
+                    <div class="movie-title">Dada</div>
+                    <div class="rating">★ 8.4</div>
+                    <div class="votes">8.7k votes</div>
                 </div>
             </div>
-            <div class="card">
-                <span class="rating-badge">7.2</span>
-                <img src="https://picsum.photos/220/320?random=2" alt="Movie 2">
-                <div class="card-info">
-                    <h3>Movie Title 2</h3>
-                    <div class="card-details">Comedy, Drama • Hindi • 2D</div>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="movie-card">
+                <img class="movie-poster" src="https://picsum.photos/220/320?random=42" alt="Movie 2">
+                <div class="movie-info">
+                    <div class="movie-title">Jailer</div>
+                    <div class="rating">★ 8.4</div>
+                    <div class="votes">1.6k votes</div>
                 </div>
             </div>
-            <div class="card">
-                <span class="rating-badge">9.0</span>
-                <img src="https://picsum.photos/220/320?random=3" alt="Movie 3">
-                <div class="card-info">
-                    <h3>Movie Title 3</h3>
-                    <div class="card-details">Sci-Fi, Adventure • English • IMAX</div>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="movie-card">
+                <img class="movie-poster" src="https://picsum.photos/220/320?random=43" alt="Movie 3">
+                <div class="movie-info">
+                    <div class="movie-title">Vikram</div>
+                    <div class="rating">★ 8.3</div>
+                    <div class="votes">2.7k votes</div>
                 </div>
             </div>
-            <div class="card">
-                <span class="rating-badge">6.8</span>
-                <img src="https://picsum.photos/220/320?random=4" alt="Movie 4">
-                <div class="card-info">
-                    <h3>Movie Title 4</h3>
-                    <div class="card-details">Horror, Mystery • Tamil • 2D</div>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="movie-card">
+                <img class="movie-poster" src="https://picsum.photos/220/320?random=44" alt="Movie 4">
+                <div class="movie-info">
+                    <div class="movie-title">Valimai</div>
+                    <div class="rating">★ 7.9</div>
+                    <div class="votes">4.1k votes</div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img class="movie-poster" src="https://picsum.photos/220/320?random=45" alt="Movie 5">
+                <div class="movie-info">
+                    <div class="movie-title">Ponniyin Selvan</div>
+                    <div class="rating">★ 8.0</div>
+                    <div class="votes">5.2k votes</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Events -->
-    <section>
-        <h2>Events This Week</h2>
-        <div class="event-grid movie-grid">
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=5" alt="Comedy">
-                <div class="card-info">
-                    <h3>Comedy Shows</h3>
-                    <div class="card-details">Stand-up Night • English/Hindi</div>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <!-- Add 3 more similar event cards if needed -->
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=6" alt="Concert">
-                <div class="card-info">
-                    <h3>Live Concerts</h3>
-                    <div class="card-details">Rock Festival • Multi-language</div>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=7" alt="Sports">
-                <div class="card-info">
-                    <h3>Sports Events</h3>
-                    <div class="card-details">Cricket Match • Live</div>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=8" alt="Theatre">
-                <div class="card-info">
-                    <h3>Theatre Plays</h3>
-                    <div class="card-details">Drama Performance</div>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="social-icons">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-youtube"></i>
-        </div>
-        <div class="footer-links" style="margin: 20px 0;">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Privacy Policy</a>
-        </div>
-        <p>© 2026 ShowTime. All rights reserved.</p>
-    </footer>
-
-    <script>
-        const banners = [
-            "https://picsum.photos/1920/1080?random=20",
-            "https://picsum.photos/1920/1080?random=21",
-            "https://picsum.photos/1920/1080?random=22"
-        ];
-        let idx = 0;
-        const slider = document.getElementById('banner-slider');
-        setInterval(() => {
-            idx = (idx + 1) % banners.length;
-            slider.src = banners[idx];
-        }, 6000);
-    </script>
 </body>
 </html>
