@@ -6,9 +6,11 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = 'midhun-tomcat-project'
-        CONTAINER_NAME = 'midhun-tomcat-container'
+        IMAGE_NAME = 'devops-observability-cicd-platform'
+        CONTAINER_NAME = 'devops-observability-cicd-platform'
         SONARQUBE_SERVER = 'sonarqube-server'
+        SONAR_PROJECT_KEY = 'devops-observability-cicd-platform'
+        SONAR_PROJECT_NAME = 'devops-observability-cicd-platform'
     }
 
     stages {
@@ -27,12 +29,12 @@ pipeline {
 
         stage('SonarQube Code Scan') {
             steps {
-                withSonarQubeEnv("$SONARQUBE_SERVER") {
-                    sh '''
+                withSonarQubeEnv("${SONARQUBE_SERVER}") {
+                    sh """
                     mvn sonar:sonar \
-                    -Dsonar.projectKey=midhun-docker-project \
-                    -Dsonar.projectName=midhun-docker-project
-                    '''
+                    -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                    -Dsonar.projectName=${SONAR_PROJECT_NAME}
+                    """
                 }
             }
         }
@@ -58,7 +60,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 dir('docker-tomcat-app') {
-                    sh "docker build -t $IMAGE_NAME ."
+                    sh "docker build -t ${IMAGE_NAME}:latest ."
                 }
             }
         }
@@ -66,9 +68,13 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh '''
-                docker stop $CONTAINER_NAME || true
-                docker rm $CONTAINER_NAME || true
-                docker run -d -p 8085:8080 --name $CONTAINER_NAME $IMAGE_NAME
+                docker stop ${CONTAINER_NAME} || true
+                docker rm ${CONTAINER_NAME} || true
+                docker run -d \
+                  -p 8085:8080 \
+                  --restart unless-stopped \
+                  --name ${CONTAINER_NAME} \
+                  ${IMAGE_NAME}:latest
                 '''
             }
         }
