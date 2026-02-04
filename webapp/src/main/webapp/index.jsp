@@ -150,6 +150,7 @@
             border-radius: 4px;
             font-size: 12px;
             margin: 5px 0;
+            display: inline-block;
         }
         .book-btn {
             background-color: #ff0000;
@@ -223,10 +224,10 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <img id="banner-slider" class="banner-slider" src="https://via.placeholder.com/1920x400?text=Banner+1" alt="Banner">
+        <img id="banner-slider" class="banner-slider" src="https://placehold.co/1920x400/111/eee?text=Now+Showing" alt="Banner">
         <div class="hero-text">
             <h1>Now Showing</h1>
-            <p>Upcoming Movies</p>
+            <p>Upcoming Movies & Events</p>
         </div>
     </div>
 
@@ -235,7 +236,7 @@
         <h2>Movies</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Movie+1" alt="Movie Poster">
+                <img src="https://placehold.co/200x300/222/aaa?text=Movie+1" alt="Movie Poster">
                 <h3>Movie Title 1</h3>
                 <p>Action, Thriller</p>
                 <p>English</p>
@@ -243,7 +244,7 @@
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Movie+2" alt="Movie Poster">
+                <img src="https://placehold.co/200x300/222/aaa?text=Movie+2" alt="Movie Poster">
                 <h3>Movie Title 2</h3>
                 <p>Comedy, Drama</p>
                 <p>Hindi</p>
@@ -251,7 +252,7 @@
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Movie+3" alt="Movie Poster">
+                <img src="https://placehold.co/200x300/222/aaa?text=Movie+3" alt="Movie Poster">
                 <h3>Movie Title 3</h3>
                 <p>Sci-Fi, Adventure</p>
                 <p>English</p>
@@ -259,7 +260,7 @@
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Movie+4" alt="Movie Poster">
+                <img src="https://placehold.co/200x300/222/aaa?text=Movie+4" alt="Movie Poster">
                 <h3>Movie Title 4</h3>
                 <p>Horror, Mystery</p>
                 <p>Tamil</p>
@@ -274,25 +275,25 @@
         <h2>Events</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Comedy+Show" alt="Event Poster">
+                <img src="https://placehold.co/200x300/333/bbb?text=Comedy+Show" alt="Comedy Show">
                 <h3>Comedy Shows</h3>
                 <p>Stand-up Comedy Night</p>
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Live+Concert" alt="Event Poster">
+                <img src="https://placehold.co/200x300/333/bbb?text=Live+Concert" alt="Live Concert">
                 <h3>Live Concerts</h3>
                 <p>Rock Music Festival</p>
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Sports+Event" alt="Event Poster">
+                <img src="https://placehold.co/200x300/333/bbb?text=Cricket+Match" alt="Sports Event">
                 <h3>Sports Events</h3>
-                <p>Cricket Match</p>
+                <p>IPL Cricket Match</p>
                 <button class="book-btn">Book Tickets</button>
             </div>
             <div class="card">
-                <img src="https://via.placeholder.com/200x300?text=Theatre+Play" alt="Event Poster">
+                <img src="https://placehold.co/200x300/333/bbb?text=Theatre+Play" alt="Theatre Play">
                 <h3>Theatre Plays</h3>
                 <p>Drama Performance</p>
                 <button class="book-btn">Book Tickets</button>
@@ -305,28 +306,34 @@
         <div class="footer-links">
             <a href="#">About</a>
             <a href="#">Contact</a>
-            <a href="#">Terms</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
         </div>
         <div class="social-icons">
-            <i class="fab fa-facebook"></i>
+            <i class="fab fa-facebook-f"></i>
             <i class="fab fa-twitter"></i>
             <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
         </div>
+        <p style="margin-top: 15px; color: #777;">© 2026 ShowTime. All rights reserved.</p>
     </footer>
 
-    <!-- Minimal JavaScript for Banner Slider -->
+    <!-- Simple Banner Slider -->
     <script>
         const banners = [
-            "https://via.placeholder.com/1920x400?text=Banner+1",
-            "https://via.placeholder.com/1920x400?text=Banner+2",
-            "https://via.placeholder.com/1920x400?text=Banner+3"
+            "https://placehold.co/1920x400/111/eee?text=Now+Showing",
+            "https://placehold.co/1920x400/222/ddd?text=Upcoming+Movies",
+            "https://placehold.co/1920x400/333/ccc?text=Events+This+Week"
         ];
         let currentBanner = 0;
         const slider = document.getElementById('banner-slider');
-        setInterval(() => {
+
+        function changeBanner() {
             currentBanner = (currentBanner + 1) % banners.length;
             slider.src = banners[currentBanner];
-        }, 5000);
+        }
+
+        setInterval(changeBanner, 5000);
     </script>
 </body>
 </html>
