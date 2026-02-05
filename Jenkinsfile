@@ -17,6 +17,15 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
+                slackSend(
+                    color: '#439FE0',
+                    message: """
+🚀 *BUILD STARTED*
+*Job:* ${env.JOB_NAME}
+*Build:* #${env.BUILD_NUMBER}
+*URL:* ${env.BUILD_URL}
+"""
+                )
                 checkout scm
             }
         }
@@ -80,22 +89,7 @@ pipeline {
         }
     }
 
-    /* =======================
-       SLACK NOTIFICATIONS
-       ======================= */
     post {
-
-        started {
-            slackSend(
-                color: '#439FE0',
-                message: """
-🚀 *BUILD STARTED*
-*Job:* ${env.JOB_NAME}
-*Build:* #${env.BUILD_NUMBER}
-*URL:* ${env.BUILD_URL}
-"""
-            )
-        }
 
         success {
             slackSend(
