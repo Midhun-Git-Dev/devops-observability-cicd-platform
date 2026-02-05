@@ -1,105 +1,154 @@
-## Project Overview
+🚀 DevOps Observability-Driven CI/CD Platform
+📌 Project Title
 
-**End-to-End DevOps CI/CD Pipeline** for a Dockerized JSP-based web application using **Jenkins**, **SonarQube**, **Docker**, and **AWS EC2**.
+End-to-End DevOps CI/CD Platform with Real-Time Monitoring & Alerting
 
-This project demonstrates a complete, automated, production-like deployment workflow — from code commit to live public application.
+❗ Problem Statement
 
-## Problem Statement
+Modern applications require fast, reliable deployments along with continuous system visibility.
+Traditional CI/CD pipelines often lack:
 
-Manual builds, testing, and deployments are error-prone, slow, and inconsistent.  
-Modern teams need **automated pipelines** that enforce quality, ensure security, and enable fast, reliable releases.
+Real-time infrastructure monitoring
 
-This project delivers a **fully automated CI/CD pipeline** with code quality gates, containerization, and cloud hosting.
+Proactive alerting for system failures
 
-## Objectives
+Unified visibility of builds, deployments, and system health
 
-- Automate build, test, quality analysis, and deployment
-- Enforce code quality using SonarQube
-- Containerize the application with Docker
-- Deploy and serve the app on AWS EC2
-- Simulate a real-world production DevOps pipeline
+This leads to delayed incident response, downtime, and poor operational awareness.
 
-## Tech Stack
+🎯 Project Objective
 
-| Category              | Tools & Technologies                  |
-|-----------------------|---------------------------------------|
-| Version Control       | Git, GitHub                           |
-| CI/CD                 | Jenkins                               |
-| Build Tool            | Maven                                 |
-| Code Quality          | SonarQube                             |
-| Containerization      | Docker                                |
-| Cloud Provider        | AWS EC2                               |
-| Web Server            | Apache Tomcat                         |
-| OS                    | Ubuntu Linux                          |
-| Application           | JSP, HTML5, CSS3, JavaScript          |
-| Scripting             | Shell (Bash)                          |
+The objective of this project is to build a production-grade DevOps pipeline that:
 
-## Architecture & Workflow
+Automates build, test, and deployment using CI/CD
 
-1. Developer pushes code to **GitHub**
-2. **Jenkins** detects commit → triggers pipeline
-3. **Maven** builds the WAR file
-4. **SonarQube** performs static code analysis + quality gate
-5. **Docker** builds production-ready image
-6. Docker container is deployed to **AWS EC2**
-7. Application served publicly via Tomcat
+Continuously monitors system health and resource usage
 
-**Pipeline Stages**:
-- Checkout
-- Maven Build
-- SonarQube Scan
-- Quality Gate
-- Docker Build & Push
-- Deploy to EC2
+Sends real-time alerts to Slack on failures or threshold breaches
 
-## Key Features of the Application
+Unifies CI/CD events and monitoring alerts in a single communication channel
 
-- Sticky navbar with search, cart & auth
-- Hero banner with promotional overlay
-- Scrollable category section
-- Modern product cards (hover effects, discounts, ratings, add-to-cart)
-- Deals of the Day with countdown timer
-- Responsive design (mobile/tablet/desktop)
-- Clean footer with links & social icons
-- JSP structure ready for backend integration
+🧰 Tools & Technologies Used
+Category	Tools
+Version Control	Git, GitHub
+CI/CD	Jenkins
+Code Quality	SonarQube
+Containerization	Docker
+Deployment	AWS EC2 (Ubuntu)
+Monitoring	Prometheus
+Visualization	Grafana
+Alerting	Grafana Alerting
+Notifications	Slack (Incoming Webhooks)
+OS & Networking	Linux, Systemd
+🏗️ System Architecture
+Developer
+   ↓
+GitHub (Source Code)
+   ↓
+Jenkins CI/CD Pipeline
+   ├── Build & Test
+   ├── SonarQube Code Analysis
+   ├── Docker Image Build
+   └── Deploy to EC2
+        ↓
+ Application Running on EC2
+        ↓
+ Prometheus ← Node Exporter
+        ↓
+ Grafana Dashboards
+        ↓
+ Grafana Alerts
+        ↓
+ Slack Notifications
 
-## Deployment Strategy
+🔄 CI/CD Pipeline Flow
 
-- WAR packaged into Tomcat-based Docker image
-- Container runs on AWS EC2 (public port 8085 → 8080)
-- Supports rolling updates via container restart
-- Security Groups restrict access
-- No hardcoded secrets
+Developer pushes code to GitHub
 
-## Challenges & Solutions
+Jenkins pipeline is triggered automatically
 
-| Challenge                     | Solution                                      |
-|-------------------------------|-----------------------------------------------|
-| Jenkins performance issues    | Upgraded EC2 instance type                    |
-| SonarQube connection failures | Correct server URL + webhook configuration    |
-| Quality gate timeouts         | Increased timeout & optimized scan rules      |
-| Docker port conflicts         | Automated container stop/remove in pipeline   |
-| Pipeline instability          | Added retry logic, detailed logging           |
+Jenkins performs:
 
-## Results & Impact
+Code checkout
 
-- **Fully automated** production-grade pipeline
-- Deployment time reduced significantly
-- Zero manual errors
-- Enforced code quality & security
-- Live, scalable app on AWS
-- Real-world DevOps simulation for portfolio
+Build & test
 
-## Future Enhancements
+SonarQube quality scan
 
-- Kubernetes orchestration
-- Terraform IaC
-- Trivy / Snyk security scanning
-- Notification integrations (Slack/Teams)
-- Multi-stage environments (Dev/Staging/Prod)
-- Auto-scaling & ALB
-- Prometheus + Grafana monitoring
+Docker image creation
 
-## Live Demo
+Application is deployed to AWS EC2
 
-🌐 **Live Application**: [http://54.226.230.216:8085/](http://54.226.230.216:8085/)
+Jenkins sends build status notifications to Slack
+
+🚢 Deployment Strategy
+
+Docker-based deployment on AWS EC2
+
+Jenkins handles automated deployment
+
+Zero manual intervention after code push
+
+Easy rollback using Docker images if required
+
+🔒 Security & Best Practices
+
+Secrets and tokens managed securely (no hardcoding)
+
+Webhooks used instead of exposing internal services
+
+Principle of least privilege followed
+
+Continuous monitoring for CPU, memory, disk, and uptime
+
+Centralized alerting for faster incident response
+
+🧩 Challenges & Solutions
+🔹 Prometheus Configuration Errors
+
+Issue: YAML parsing errors and duplicate scrape configs
+Solution: Cleaned and validated Prometheus configuration structure
+
+🔹 Grafana Dashboard “No Data” Issue
+
+Issue: Datasource mismatch and label selection errors
+Solution: Corrected datasource mapping and instance labels
+
+🔹 Slack Alert Integration
+
+Issue: Confusion between token vs webhook configuration
+Solution: Implemented Slack Incoming Webhooks for reliable alert delivery
+
+🔹 Permission Issues
+
+Issue: File permission errors while editing configs
+Solution: Used proper ownership and sudo privileges
+
+📊 Impact & Results
+
+✅ Fully automated CI/CD pipeline
+
+📈 Real-time system metrics visualization
+
+🚨 Instant Slack alerts on threshold breaches
+
+🔄 Unified monitoring + CI/CD notifications
+
+⏱️ Faster incident detection and resolution
+
+🔮 Future Scope
+
+Add Kubernetes deployment
+
+Introduce auto-scaling alerts
+
+Implement multi-environment monitoring (Dev / QA / Prod)
+
+Add log monitoring using ELK stack
+
+Integrate PagerDuty or Opsgenie for critical alerts
+
+🏁 Conclusion
+
+This project demonstrates a real-world DevOps implementation combining automation, monitoring, and alerting.
+It showcases industry-standard tools and best practices used in modern production environments.
