@@ -4,9 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShowTime - Book Movie & Event Tickets</title>
+    <title>LUXEVOYAGE - Premium Travel Experiences</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-dark: #B8942F;
+            --black: #0A0A0A;
+            --dark-gray: #1A1A1A;
+            --gray: #2A2A2A;
+            --white: #F8F8F8;
+            --gradient-gold: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, #E6C547 100%);
+            --gradient-dark: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--gray) 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,627 +26,548 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Header Styles */
+        /* Premium Glass Morphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+        }
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, #1a0000 0%, #2d0000 100%);
-            padding: 1rem 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(255, 0, 0, 0.3);
+            padding: 1rem 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         nav {
-            max-width: 1400px;
-            margin: 0 auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 2rem;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
         .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff0040, #ff4081);
+            font-weight: 700;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
+            letter-spacing: 2px;
         }
 
-        .location-selector select {
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
         }
 
-        .search-container {
-            flex: 1;
-            max-width: 500px;
-            margin: 0 2rem;
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .search-box {
-            width: 100%;
-            padding: 0.8rem 1rem 0.8rem 3rem;
-            border: none;
-            border-radius: 25px;
-            background: #333;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .search-box::placeholder {
-            color: #aaa;
-        }
-
-        .search-icon {
+        .nav-links a::after {
+            content: '';
             position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff4081;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-gold);
+            transition: width 0.3s ease;
         }
 
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: 500;
-            cursor: pointer;
+        .cta-btn {
+            background: var(--gradient-gold);
+            color: var(--black);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
-            display: inline-block;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-login {
-            background: transparent;
-            color: #fff;
-            border: 2px solid #ff4081;
-        }
-
-        .btn-login:hover {
-            background: #ff4081;
-        }
-
-        .btn-signup {
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            color: #fff;
-        }
-
-        .btn-signup:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.6);
         }
 
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            position: relative;
-            height: 70vh;
-            overflow: hidden;
-        }
-
-        .hero-slider {
+            height: 100vh;
+            background: var(--gradient-dark), 
+                        url('https://picsum.photos/1920/1080?random=100') center/cover;
             display: flex;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .hero-slide {
-            min-width: 100%;
-            height: 70vh;
-            background-size: cover;
-            background-position: center;
+            align-items: center;
             position: relative;
         }
 
-        .hero-slide:nth-child(1) { 
-            background: linear-gradient(135deg, rgba(255,0,64,0.8), rgba(255,64,129,0.8)), 
-                        url('https://picsum.photos/1920/800?random=1') center/cover; 
-        }
-        .hero-slide:nth-child(2) { 
-            background: linear-gradient(135deg, rgba(64,128,255,0.8), rgba(255,64,129,0.8)), 
-                        url('https://picsum.photos/1920/800?random=2') center/cover; 
-        }
-        .hero-slide:nth-child(3) { 
-            background: linear-gradient(135deg, rgba(45,0,0,0.9), rgba(255,64,129,0.7)), 
-                        url('https://picsum.photos/1920/800?random=3') center/cover; 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
         }
 
         .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-            max-width: 500px;
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1.5rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
-        .hero-category {
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            font-weight: 500;
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 700px;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .search-btn {
+            background: var(--gradient-gold);
+            color: var(--black);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         /* Sections */
         .section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 8rem 0;
         }
 
-        .section h2 {
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #ff4081, #ff0040);
+            margin-bottom: 4rem;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .grid {
+        .destinations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
-        .card {
-            background: #1a1a1a;
-            border-radius: 15px;
+        .destination-card {
+            position: relative;
+            height: 500px;
+            border-radius: 30px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
             cursor: pointer;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.3);
+        .destination-card:hover {
+            transform: translateY(-20px) scale(1.02);
         }
 
-        .card-img {
+        .destination-card img {
             width: 100%;
-            height: 350px;
-            background-size: cover;
-            background-position: center;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        /* Movie Cards - Fixed with Picsum */
-        .card-movie1 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=10') center/cover; 
-        }
-        .card-movie2 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=11') center/cover; 
-        }
-        .card-movie3 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=12') center/cover; 
-        }
-        .card-movie4 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=13') center/cover; 
-        }
-        .card-movie5 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=14') center/cover; 
-        }
-        .card-movie6 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=15') center/cover; 
+        .destination-card:hover img {
+            transform: scale(1.1);
         }
 
-        /* Event Cards - Fixed with Picsum */
-        .card-event1 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=20') center/cover; 
-        }
-        .card-event2 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=21') center/cover; 
-        }
-        .card-event3 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=22') center/cover; 
-        }
-        .card-event4 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=23') center/cover; 
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 3rem 2rem 2rem;
         }
 
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: #fff;
         }
 
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #aaa;
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .rating {
-            background: #ff4081;
-            color: #fff;
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        /* Features Section */
+        .features {
+            background: var(--dark-gray);
         }
 
-        .book-btn {
-            width: 100%;
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            color: #fff;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 25px;
-            font-weight: 500;
-            cursor: pointer;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            glass: glass;
+            border-radius: 30px;
             transition: all 0.3s ease;
         }
 
-        .book-btn:hover {
-            transform: scale(1.05);
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--black);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-dark);
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .cta-h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         /* Footer */
         footer {
-            background: #111;
-            padding: 3rem 2rem 1rem;
+            background: var(--black);
+            padding: 4rem 0 2rem;
             text-align: center;
         }
 
         .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
         }
 
-        .footer-links a {
-            color: #aaa;
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
             transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: #ff4081;
+        .footer-section a:hover {
+            color: var(--gold);
         }
 
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
-        .social-icons a {
+        .social-link {
             width: 50px;
             height: 50px;
-            background: #333;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
+            color: var(--white);
             transition: all 0.3s ease;
         }
 
-        .social-icons a:hover {
-            background: #ff4081;
-            transform: translateY(-3px);
+        .social-link:hover {
+            background: var(--gradient-gold);
+            color: var(--black);
+            transform: translateY(-5px);
         }
 
-        /* Responsive Design */
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            nav {
+            .search-form {
                 flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
             }
-
-            .search-container {
-                margin: 0;
-                order: -1;
-                width: 100%;
+            
+            .nav-links {
+                display: none;
             }
-
-            .auth-buttons {
-                order: -1;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 2rem 1rem;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                height: 50vh;
-            }
-
-            .hero-slide {
-                height: 50vh;
-            }
-
-            .card-img {
-                height: 250px;
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header/Navbar -->
+    <!-- Header -->
     <header>
-        <nav>
-            <a href="#" class="logo">ShowTime</a>
-            
-            <div class="location-selector">
-                <select>
-                    <option>Bangalore</option>
-                    <option>Chennai</option>
-                    <option>Hyderabad</option>
-                    <option>Mumbai</option>
-                </select>
-            </div>
-
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-box" placeholder="Search for Movies, Events, Plays, Sports">
-            </div>
-
-            <div class="auth-buttons">
-                <a href="#" class="btn btn-login">Login</a>
-                <a href="#" class="btn btn-signup">Sign Up</a>
-            </div>
+        <nav class="container">
+            <a href="#" class="logo">LUXEVOYAGE</a>
+            <ul class="nav-links">
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cta-btn">Book Now</a></li>
+            </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-slider" id="heroSlider">
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-category">NOW SHOWING</div>
-                    <h1>Blockbuster Season</h1>
-                    <p>Experience the biggest movies in theaters near you!</p>
+        <div class="hero-content container animate">
+            <h1>Extraordinary Journeys<br>for Discerning Travelers</h1>
+            <p>Discover bespoke luxury travel experiences curated by world-class experts. From private islands to exclusive safaris, we craft unforgettable memories.</p>
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Where do you want to go?">
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> Discover
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Destinations -->
+    <section id="destinations" class="section">
+        <div class="container">
+            <h2 class="section-title animate">Featured Destinations</h2>
+            <div class="destinations-grid">
+                <div class="destination-card animate">
+                    <img src="https://picsum.photos/500/500?random=1" alt="Maldives">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Maldives</h3>
+                        <div class="card-price">From $8,500/night</div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-category">UPCOMING</div>
-                    <h1>Can't Miss Movies</h1>
-                    <p>Get ready for the next big releases!</p>
+                <div class="destination-card animate">
+                    <img src="https://picsum.photos/500/500?random=2" alt="Santorini">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Santorini</h3>
+                        <div class="card-price">From $4,200/night</div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-category">LIVE EVENTS</div>
-                    <h1>Concerts & Shows</h1>
-                    <p>Live entertainment at its best!</p>
+                <div class="destination-card animate">
+                    <img src="https://picsum.photos/500/500?random=3" alt="Safari">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Safari</h3>
+                        <div class="card-price">From $12,000/trip</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Movies Section -->
-    <section class="section">
-        <h2>Now Showing Movies</h2>
-        <div class="grid">
-            <div class="card card-movie1">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Action Thriller</h3>
-                    <div class="card-meta">
-                        <span>Action, Thriller</span>
-                        <span class="rating">8.5/10</span>
+    <!-- Features -->
+    <section id="experiences" class="section features">
+        <div class="container">
+            <h2 class="section-title animate">Why Choose LuxeVoyage?</h2>
+            <div class="features-grid">
+                <div class="feature-card glass animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
                     </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Hindi, English</span>
-                    <button class="book-btn">Book Tickets</button>
+                    <h3>Exclusive Properties</h3>
+                    <p>Access to the world's most private villas, yachts, and palaces not available on public booking sites.</p>
                 </div>
-            </div>
-            <div class="card card-movie2">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Romantic Drama</h3>
-                    <div class="card-meta">
-                        <span>Romance, Drama</span>
-                        <span class="rating">7.9/10</span>
+                <div class="feature-card glass animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-concierge-bell"></i>
                     </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Tamil, Telugu</span>
-                    <button class="book-btn">Book Tickets</button>
+                    <h3>24/7 Concierge</h3>
+                    <p>Personal travel advisors available around the clock to customize every detail of your journey.</p>
                 </div>
-            </div>
-            <div class="card card-movie3">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Sci-Fi Adventure</h3>
-                    <div class="card-meta">
-                        <span>Sci-Fi, Adventure</span>
-                        <span class="rating">9.2/10</span>
+                <div class="feature-card glass animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">English, Hindi</span>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <div class="card card-movie4">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Comedy</h3>
-                    <div class="card-meta">
-                        <span>Comedy</span>
-                        <span class="rating">8.1/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Kannada, Hindi</span>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <div class="card card-movie5">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Horror</h3>
-                    <div class="card-meta">
-                        <span>Horror, Thriller</span>
-                        <span class="rating">7.6/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Malayalam</span>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <div class="card card-movie6">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Family Drama</h3>
-                    <div class="card-meta">
-                        <span>Drama, Family</span>
-                        <span class="rating">8.7/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Telugu, Tamil</span>
-                    <button class="book-btn">Book Tickets</button>
+                    <h3>Guaranteed Privacy</h3>
+                    <p>Complete discretion and security for high-profile clients and celebrities.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section class="section" style="background: #1a1a1a;">
-        <h2>Live Events & Experiences</h2>
-        <div class="grid">
-            <div class="card card-event1">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Stand-up Comedy</h3>
-                    <p>Laugh out loud with top comedians</p>
-                    <button class="book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="card card-event2">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Live Concerts</h3>
-                    <p>Top artists performing live</p>
-                    <button class="book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="card card-event3">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Sports Events</h3>
-                    <p>Live sports action</p>
-                    <button class="book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="card card-event4">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Theatre Plays</h3>
-                    <p>Captivating stage performances</p>
-                    <button class="book-btn">Book Now</button>
-                </div>
-            </div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container animate">
+            <h2 class="cta-h2">Ready for Your Next Extraordinary Journey?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Join 5,000+ discerning travelers who trust LuxeVoyage</p>
+            <a href="#" class="cta-btn" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Start Planning <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Careers</a>
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LUXEVOYAGE</h3>
+                    <p>Curating extraordinary travel experiences for the world's most discerning travelers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Destinations</h3>
+                    <a href="#">Europe</a>
+                    <a href="#">Asia</a>
+                    <a href="#">Africa</a>
+                    <a href="#">Americas</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Private Jets</a>
+                    <a href="#">Yacht Charters</a>
+                    <a href="#">Villas</a>
+                    <a href="#">Safaris</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@luxevoyage.com</p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
             </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <p style="color: #aaa; margin-top: 2rem;">&copy; 2026 ShowTime. All rights reserved. | Made with ❤️ in Bangalore</p>
+            <p style="margin-top: 3rem; opacity: 0.6;">© 2026 LuxeVoyage. All rights reserved. | Crafted with precision.</p>
         </div>
     </footer>
 
     <script>
-        // Simple hero slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const totalSlides = slides.length;
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            document.getElementById('heroSlider').style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        setInterval(nextSlide, 5000);
-
-        // Book button interactions
-        document.querySelectorAll('.book-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                alert('🎟️ Redirecting to booking page... (Demo)');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Search functionality (demo)
-        document.querySelector('.search-box').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                alert('🔍 Searching for: ' + this.value);
-            }
+        // Animate on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+        // Search form
+        document.querySelector('.search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.querySelector('.search-input').value;
+            alert(`✨ Searching premium destinations for: "${query}"\n\nWelcome to luxury travel!`);
         });
     </script>
 </body>
