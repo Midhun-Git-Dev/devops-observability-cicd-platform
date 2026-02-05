@@ -146,9 +146,18 @@
             position: relative;
         }
 
-        .hero-slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x800/ff0040/ffffff?text=NOW+SHOWING'); }
-        .hero-slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x800/ff4081/ffffff?text=UPCOMING+BLOCKBUSTERS'); }
-        .hero-slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x800/2d0000/ffffff?text=LIVE+EVENTS'); }
+        .hero-slide:nth-child(1) { 
+            background: linear-gradient(135deg, rgba(255,0,64,0.8), rgba(255,64,129,0.8)), 
+                        url('https://picsum.photos/1920/800?random=1') center/cover; 
+        }
+        .hero-slide:nth-child(2) { 
+            background: linear-gradient(135deg, rgba(64,128,255,0.8), rgba(255,64,129,0.8)), 
+                        url('https://picsum.photos/1920/800?random=2') center/cover; 
+        }
+        .hero-slide:nth-child(3) { 
+            background: linear-gradient(135deg, rgba(45,0,0,0.9), rgba(255,64,129,0.7)), 
+                        url('https://picsum.photos/1920/800?random=3') center/cover; 
+        }
 
         .hero-content {
             position: absolute;
@@ -215,17 +224,49 @@
             background-position: center;
         }
 
-        .card-movie1 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/ff0040/ffffff?text=MOVIE+1'); }
-        .card-movie2 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/4080ff/ffffff?text=MOVIE+2'); }
-        .card-movie3 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/ff8040/ffffff?text=MOVIE+3'); }
-        .card-movie4 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/40ff80/ffffff?text=MOVIE+4'); }
-        .card-movie5 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/8040ff/ffffff?text=MOVIE+5'); }
-        .card-movie6 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/ff4080/ffffff?text=MOVIE+6'); }
+        /* Movie Cards - Fixed with Picsum */
+        .card-movie1 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/450?random=10') center/cover; 
+        }
+        .card-movie2 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/450?random=11') center/cover; 
+        }
+        .card-movie3 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/450?random=12') center/cover; 
+        }
+        .card-movie4 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/450?random=13') center/cover; 
+        }
+        .card-movie5 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/450?random=14') center/cover; 
+        }
+        .card-movie6 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/450?random=15') center/cover; 
+        }
 
-        .card-event1 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/ff4081/000000?text=COMEDY'); }
-        .card-event2 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/4080ff/000000?text=CONCERT'); }
-        .card-event3 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/40ff80/000000?text=SPORTS'); }
-        .card-event4 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/ff8040/000000?text=THEATRE'); }
+        /* Event Cards - Fixed with Picsum */
+        .card-event1 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/350?random=20') center/cover; 
+        }
+        .card-event2 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/350?random=21') center/cover; 
+        }
+        .card-event3 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/350?random=22') center/cover; 
+        }
+        .card-event4 .card-img { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/300/350?random=23') center/cover; 
+        }
 
         .card-content {
             padding: 1.5rem;
