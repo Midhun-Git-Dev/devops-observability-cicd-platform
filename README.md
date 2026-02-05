@@ -4,9 +4,6 @@
 
 Built to solve real pain points: slow incident response, blind deployments, and fragmented visibility in modern application delivery.
 
-![Project Banner](https://via.placeholder.com/1200x400/1e40af/ffffff?text=DevOps+Observability+Pipeline)  
-*(Replace with your own architecture diagram, Grafana screenshot, or Canva-made banner for maximum impact)*
-
 ## 🌟 Key Highlights & Achievements
 
 - **Fully automated zero-touch deployments** — push code → build → test → deploy → monitor
@@ -53,7 +50,7 @@ Prometheus scraping (Node Exporter)
 Grafana Dashboards
 ↓
 Alert Rules → Slack
-text*(Add a real diagram here — use draw.io, excalidraw, or paste Grafana screenshot)*
+
 
 ## 🔄 Pipeline in Action (One Push Flow)
 
@@ -112,6 +109,6 @@ It demonstrates hands-on experience with tools used daily in **cloud-native**, *
 
 Feel free to ⭐ the repo or fork it — contributions & feedback welcome!
 
-Questions? Reach out on [LinkedIn](https://linkedin.com/in/your-profile) or open an issue.
+Questions? Reach out on [LinkedIn](https://www.linkedin.com/in/midhun-cloud) or open an issue.
 
 Happy Deploying! 🚀
