@@ -4,638 +4,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShowTime - Book Movie & Event Tickets</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ShowTime | Movie & Events Ticket Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* CSS Variables for Consistency */
+        :root {
+            --primary-red: #f84464;
+            --bg-dark: #1f212a;
+            --bg-nav: #333545;
+            --text-white: #ffffff;
+            --text-gray: #b9b9b9;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
-            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
         }
 
-        /* Header Styles */
+        /* --- Header & Navbar --- */
         header {
-            background: linear-gradient(135deg, #1a0000 0%, #2d0000 100%);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(255, 0, 0, 0.3);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
+            background-color: var(--bg-nav);
+            padding: 10px 5%;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 2rem;
             flex-wrap: wrap;
         }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .location-selector select {
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-red);
+            text-decoration: none;
         }
 
         .search-container {
-            flex: 1;
+            flex-grow: 1;
             max-width: 500px;
-            margin: 0 2rem;
             position: relative;
+            margin: 0 20px;
         }
 
-        .search-box {
+        .search-container input {
             width: 100%;
-            padding: 0.8rem 1rem 0.8rem 3rem;
+            padding: 8px 35px;
+            border-radius: 4px;
             border: none;
-            border-radius: 25px;
-            background: #333;
-            color: #fff;
-            font-size: 1rem;
+            outline: none;
         }
 
-        .search-box::placeholder {
-            color: #aaa;
-        }
-
-        .search-icon {
+        .search-container i {
             position: absolute;
-            left: 1rem;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
-            color: #ff4081;
+            color: #999;
         }
 
-        .auth-buttons {
+        .nav-right {
             display: flex;
-            gap: 1rem;
+            align-items: center;
+            gap: 15px;
         }
 
-        .btn {
-            padding: 0.7rem 1.5rem;
+        select {
+            background: transparent;
+            color: white;
             border: none;
-            border-radius: 25px;
-            font-weight: 500;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
         }
 
         .btn-login {
-            background: transparent;
-            color: #fff;
-            border: 2px solid #ff4081;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
         }
 
-        .btn-login:hover {
-            background: #ff4081;
-        }
-
-        .btn-signup {
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            color: #fff;
-        }
-
-        .btn-signup:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
-        }
-
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
-            margin-top: 80px;
-            position: relative;
-            height: 70vh;
-            overflow: hidden;
-        }
-
-        .hero-slider {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .hero-slide {
-            min-width: 100%;
-            height: 70vh;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .hero-slide:nth-child(1) { 
-            background: linear-gradient(135deg, rgba(255,0,64,0.8), rgba(255,64,129,0.8)), 
-                        url('https://picsum.photos/1920/800?random=1') center/cover; 
-        }
-        .hero-slide:nth-child(2) { 
-            background: linear-gradient(135deg, rgba(64,128,255,0.8), rgba(255,64,129,0.8)), 
-                        url('https://picsum.photos/1920/800?random=2') center/cover; 
-        }
-        .hero-slide:nth-child(3) { 
-            background: linear-gradient(135deg, rgba(45,0,0,0.9), rgba(255,64,129,0.7)), 
-                        url('https://picsum.photos/1920/800?random=3') center/cover; 
-        }
-
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-            max-width: 500px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-
-        .hero-category {
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        /* Sections */
-        .section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section h2 {
+            width: 100%;
+            background-color: var(--bg-dark);
+            padding: 20px 0;
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #ff4081, #ff0040);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-banner {
+            width: 90%;
+            max-width: 1200px;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 8px;
+            background: url('https://via.placeholder.com/1200x300/333545/ffffff?text=Blockbuster+Movies+Now+Showing') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* --- Main Content Layout --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #222;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
 
+        /* --- Card Styles --- */
         .card {
-            background: #1a1a1a;
-            border-radius: 15px;
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: transform 0.3s;
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.3);
+            transform: translateY(-5px);
         }
 
         .card-img {
             width: 100%;
-            height: 350px;
-            background-size: cover;
-            background-position: center;
+            height: 320px;
+            object-fit: cover;
+            position: relative;
         }
 
-        /* Movie Cards - Fixed with Picsum */
-        .card-movie1 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=10') center/cover; 
-        }
-        .card-movie2 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=11') center/cover; 
-        }
-        .card-movie3 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=12') center/cover; 
-        }
-        .card-movie4 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=13') center/cover; 
-        }
-        .card-movie5 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=14') center/cover; 
-        }
-        .card-movie6 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/450?random=15') center/cover; 
+        .rating-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
         }
 
-        /* Event Cards - Fixed with Picsum */
-        .card-event1 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=20') center/cover; 
-        }
-        .card-event2 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=21') center/cover; 
-        }
-        .card-event3 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=22') center/cover; 
-        }
-        .card-event4 .card-img { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://picsum.photos/300/350?random=23') center/cover; 
+        .card-body {
+            padding: 15px;
         }
 
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        .rating {
-            background: #ff4081;
-            color: #fff;
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+        .card-title {
+            font-size: 18px;
             font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .book-btn {
+        .card-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn-book {
             width: 100%;
-            background: linear-gradient(45deg, #ff0040, #ff4081);
-            color: #fff;
+            padding: 10px;
+            background-color: var(--primary-red);
+            color: white;
             border: none;
-            padding: 0.8rem;
-            border-radius: 25px;
-            font-weight: 500;
+            border-radius: 5px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
-        .book-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
+        /* --- Footer --- */
         footer {
-            background: #111;
-            padding: 3rem 2rem 1rem;
+            background-color: var(--bg-nav);
+            color: var(--text-gray);
+            padding: 40px 5%;
             text-align: center;
         }
 
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
         .footer-links {
+            margin: 20px 0;
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: #aaa;
+            color: var(--text-gray);
             text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ff4081;
         }
 
         .social-icons {
+            font-size: 24px;
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .social-icons a {
-            width: 50px;
-            height: 50px;
-            background: #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            transition: all 0.3s ease;
+        .social-icons i {
+            cursor: pointer;
         }
 
-        .social-icons a:hover {
-            background: #ff4081;
-            transform: translateY(-3px);
-        }
-
-        /* Responsive Design */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .search-container {
-                margin: 0;
-                order: -1;
-                width: 100%;
-            }
-
-            .auth-buttons {
-                order: -1;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 2rem 1rem;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                height: 50vh;
-            }
-
-            .hero-slide {
-                height: 50vh;
-            }
-
-            .card-img {
-                height: 250px;
-            }
+            .nav-left { width: 100%; justify-content: space-between; }
+            .search-container { order: 3; width: 100%; margin: 10px 0; }
+            .hero-banner { height: 150px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header/Navbar -->
+
     <header>
-        <nav>
+        <div class="nav-left">
             <a href="#" class="logo">ShowTime</a>
-            
-            <div class="location-selector">
-                <select>
-                    <option>Bangalore</option>
-                    <option>Chennai</option>
-                    <option>Hyderabad</option>
-                    <option>Mumbai</option>
-                </select>
-            </div>
-
             <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-box" placeholder="Search for Movies, Events, Plays, Sports">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for Movies, Events, Plays, Sports">
             </div>
-
-            <div class="auth-buttons">
-                <a href="#" class="btn btn-login">Login</a>
-                <a href="#" class="btn btn-signup">Sign Up</a>
-            </div>
-        </nav>
+        </div>
+        <div class="nav-right">
+            <select>
+                <option>Bangalore</option>
+                <option>Chennai</option>
+                <option>Hyderabad</option>
+                <option>Mumbai</option>
+            </select>
+            <button class="btn-login">Sign In</button>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-slider" id="heroSlider">
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-category">NOW SHOWING</div>
-                    <h1>Blockbuster Season</h1>
-                    <p>Experience the biggest movies in theaters near you!</p>
-                </div>
+    <div class="hero">
+        <div class="hero-banner" id="banner">
             </div>
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-category">UPCOMING</div>
-                    <h1>Can't Miss Movies</h1>
-                    <p>Get ready for the next big releases!</p>
-                </div>
-            </div>
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-category">LIVE EVENTS</div>
-                    <h1>Concerts & Shows</h1>
-                    <p>Live entertainment at its best!</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- Movies Section -->
-    <section class="section">
-        <h2>Now Showing Movies</h2>
+    <div class="container">
+        <h2>Movies - Now Showing</h2>
         <div class="grid">
-            <div class="card card-movie1">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Action Thriller</h3>
-                    <div class="card-meta">
-                        <span>Action, Thriller</span>
-                        <span class="rating">8.5/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Hindi, English</span>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="card">
+                <div style="position: relative;">
+                    <img src="https://via.placeholder.com/300x450/000000/FFFFFF?text=The+Batman" class="card-img" alt="Movie">
+                    <span class="rating-badge"><i class="fas fa-star" style="color:#f84464"></i> 8.5/10</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">The Batman</div>
+                    <div class="card-info">Action/Crime • English</div>
+                    <button class="btn-book" onclick="alert('Booking Flow Triggered!')">Book Tickets</button>
                 </div>
             </div>
-            <div class="card card-movie2">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Romantic Drama</h3>
-                    <div class="card-meta">
-                        <span>Romance, Drama</span>
-                        <span class="rating">7.9/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Tamil, Telugu</span>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="card">
+                <div style="position: relative;">
+                    <img src="https://via.placeholder.com/300x450/000000/FFFFFF?text=Interstellar" class="card-img" alt="Movie">
+                    <span class="rating-badge"><i class="fas fa-star" style="color:#f84464"></i> 9.1/10</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Interstellar</div>
+                    <div class="card-info">Sci-Fi/Drama • English</div>
+                    <button class="btn-book">Book Tickets</button>
                 </div>
             </div>
-            <div class="card card-movie3">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Sci-Fi Adventure</h3>
-                    <div class="card-meta">
-                        <span>Sci-Fi, Adventure</span>
-                        <span class="rating">9.2/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">English, Hindi</span>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="card">
+                <div style="position: relative;">
+                    <img src="https://via.placeholder.com/300x450/000000/FFFFFF?text=Inception" class="card-img" alt="Movie">
+                    <span class="rating-badge"><i class="fas fa-star" style="color:#f84464"></i> 8.8/10</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Inception</div>
+                    <div class="card-info">Action/Sci-Fi • English</div>
+                    <button class="btn-book">Book Tickets</button>
                 </div>
             </div>
-            <div class="card card-movie4">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Comedy</h3>
-                    <div class="card-meta">
-                        <span>Comedy</span>
-                        <span class="rating">8.1/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Kannada, Hindi</span>
-                    <button class="book-btn">Book Tickets</button>
+            <div class="card">
+                <div style="position: relative;">
+                    <img src="https://via.placeholder.com/300x450/000000/FFFFFF?text=Pathaan" class="card-img" alt="Movie">
+                    <span class="rating-badge"><i class="fas fa-star" style="color:#f84464"></i> 7.5/10</span>
                 </div>
-            </div>
-            <div class="card card-movie5">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Horror</h3>
-                    <div class="card-meta">
-                        <span>Horror, Thriller</span>
-                        <span class="rating">7.6/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Malayalam</span>
-                    <button class="book-btn">Book Tickets</button>
-                </div>
-            </div>
-            <div class="card card-movie6">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Family Drama</h3>
-                    <div class="card-meta">
-                        <span>Drama, Family</span>
-                        <span class="rating">8.7/10</span>
-                    </div>
-                    <span style="font-size: 0.85rem; color: #aaa;">Telugu, Tamil</span>
-                    <button class="book-btn">Book Tickets</button>
+                <div class="card-body">
+                    <div class="card-title">Pathaan</div>
+                    <div class="card-info">Action • Hindi</div>
+                    <button class="btn-book">Book Tickets</button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Events Section -->
-    <section class="section" style="background: #1a1a1a;">
-        <h2>Live Events & Experiences</h2>
+        <h2>Live Events</h2>
         <div class="grid">
-            <div class="card card-event1">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Stand-up Comedy</h3>
-                    <p>Laugh out loud with top comedians</p>
-                    <button class="book-btn">Book Now</button>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200/444/fff?text=Comedy+Night" class="card-img" style="height:200px;">
+                <div class="card-body">
+                    <div class="card-title">Stand-up Comedy</div>
+                    <div class="card-info">Comedy • Multi Language</div>
                 </div>
             </div>
-            <div class="card card-event2">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Live Concerts</h3>
-                    <p>Top artists performing live</p>
-                    <button class="book-btn">Book Now</button>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200/444/fff?text=Rock+Concert" class="card-img" style="height:200px;">
+                <div class="card-body">
+                    <div class="card-title">Rock in City</div>
+                    <div class="card-info">Concert • English/Hindi</div>
                 </div>
             </div>
-            <div class="card card-event3">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Sports Events</h3>
-                    <p>Live sports action</p>
-                    <button class="book-btn">Book Now</button>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200/444/fff?text=IPL+2026" class="card-img" style="height:200px;">
+                <div class="card-body">
+                    <div class="card-title">Cricket League</div>
+                    <div class="card-info">Sports • Outdoor</div>
                 </div>
             </div>
-            <div class="card card-event4">
-                <div class="card-img"></div>
-                <div class="card-content">
-                    <h3>Theatre Plays</h3>
-                    <p>Captivating stage performances</p>
-                    <button class="book-btn">Book Now</button>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200/444/fff?text=Hamlet+Play" class="card-img" style="height:200px;">
+                <div class="card-body">
+                    <div class="card-title">Theatre: Hamlet</div>
+                    <div class="card-info">Plays • English</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Careers</a>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p style="color: #aaa; margin-top: 2rem;">&copy; 2026 ShowTime. All rights reserved. | Made with ❤️ in Bangalore</p>
+        <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
         </div>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <p>&copy; 2026 ShowTime Entertainment Pvt. Ltd. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Simple hero slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const totalSlides = slides.length;
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            document.getElementById('heroSlider').style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        setInterval(nextSlide, 5000);
-
-        // Book button interactions
-        document.querySelectorAll('.book-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('🎟️ Redirecting to booking page... (Demo)');
-            });
-        });
-
-        // Search functionality (demo)
-        document.querySelector('.search-box').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                alert('🔍 Searching for: ' + this.value);
-            }
-        });
+        // Minimal JavaScript for Banner Rotation effect
+        const banners = [
+            "https://via.placeholder.com/1200x300/333545/ffffff?text=Exclusive+Concert+Tickets+Available",
+            "https://via.placeholder.com/1200x300/1f212a/ffffff?text=Up+To+50+Percent+Off+On+First+Movie",
+            "https://via.placeholder.com/1200x300/f84464/ffffff?text=Book+Your+Valentine+Specials"
+        ];
+        let current = 0;
+        setInterval(() => {
+            current = (current + 1) % banners.length;
+            document.getElementById('banner').style.backgroundImage = `url('${banners[current]}')`;
+        }, 4000);
     </script>
 </body>
 </html>
