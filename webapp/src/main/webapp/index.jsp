@@ -183,19 +183,6 @@
             background: linear-gradient(to top, #1a1a1a 0%, transparent 100%);
         }
         
-        /* Gradient backgrounds for hero slides */
-        .hero-slide:nth-child(1) {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
-        }
-        
-        .hero-slide:nth-child(2) {
-            background: linear-gradient(135deg, #1a1a1a 0%, #7c2d12 100%);
-        }
-        
-        .hero-slide:nth-child(3) {
-            background: linear-gradient(135deg, #1a1a1a 0%, #991b1b 100%);
-        }
-        
         .hero-content {
             position: absolute;
             bottom: 60px;
@@ -331,6 +318,7 @@
             color: #666;
             font-size: 14px;
             font-weight: 500;
+            position: relative;
         }
         
         .card-image img {
@@ -427,6 +415,7 @@
             color: #666;
             font-size: 14px;
             font-weight: 500;
+            position: relative;
         }
         
         .event-image img {
@@ -639,7 +628,7 @@
     <section class="hero-section">
         <div class="hero-slider" id="heroSlider">
             <!-- Slide 1 -->
-            <div class="hero-slide">
+            <div class="hero-slide" style="background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);">
                 <div class="hero-content">
                     <h1>Now Showing</h1>
                     <p>Book tickets for the latest blockbuster movies in theatres near you</p>
@@ -648,7 +637,7 @@
             </div>
             
             <!-- Slide 2 -->
-            <div class="hero-slide">
+            <div class="hero-slide" style="background: linear-gradient(135deg, #1a1a1a 0%, #7c2d12 100%);">
                 <div class="hero-content">
                     <h1>Live Concerts</h1>
                     <p>Experience the best live music performances and concerts</p>
@@ -657,7 +646,7 @@
             </div>
             
             <!-- Slide 3 -->
-            <div class="hero-slide">
+            <div class="hero-slide" style="background: linear-gradient(135deg, #1a1a1a 0%, #991b1b 100%);">
                 <div class="hero-content">
                     <h1>Comedy Shows</h1>
                     <p>Laugh out loud with the funniest comedians in town</p>
@@ -685,7 +674,7 @@
             <!-- Movie Card 1 -->
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/220/320?random=1" alt="Movie 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/320?random=1" alt="Movie 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">The Dark Knight Returns</h3>
@@ -704,7 +693,7 @@
             <!-- Movie Card 2 -->
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/220/320?random=2" alt="Movie 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/320?random=2" alt="Movie 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Inception Dreams</h3>
@@ -723,7 +712,7 @@
             <!-- Movie Card 3 -->
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/220/320?random=3" alt="Movie 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/320?random=3" alt="Movie 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Mumbai Diaries</h3>
@@ -742,7 +731,7 @@
             <!-- Movie Card 4 -->
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/220/320?random=4" alt="Movie 4" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/320?random=4" alt="Movie 4" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Chennai Express 2</h3>
@@ -761,7 +750,7 @@
             <!-- Movie Card 5 -->
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/220/320?random=5" alt="Movie 5" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/320?random=5" alt="Movie 5" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Mission Impossible 8</h3>
@@ -780,7 +769,7 @@
             <!-- Movie Card 6 -->
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/220/320?random=6" alt="Movie 6" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/320?random=6" alt="Movie 6" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Bangalore Days Redux</h3>
@@ -809,7 +798,7 @@
             <!-- Comedy Show Event -->
             <div class="event-card">
                 <div class="event-image">
-                    <img src="https://picsum.photos/220/280?random=7" alt="Comedy Show" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-microphone\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/280?random=7" alt="Comedy Show" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-microphone\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <span class="event-badge">COMEDY</span>
                 <div class="event-content">
@@ -825,7 +814,7 @@
             <!-- Live Concert Event -->
             <div class="event-card">
                 <div class="event-image">
-                    <img src="https://picsum.photos/220/280?random=8" alt="Live Concert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-music\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/280?random=8" alt="Live Concert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-music\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <span class="event-badge">CONCERT</span>
                 <div class="event-content">
@@ -841,7 +830,7 @@
             <!-- Sports Event -->
             <div class="event-card">
                 <div class="event-image">
-                    <img src="https://picsum.photos/220/280?random=9" alt="Sports Event" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-baseball-ball\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/280?random=9" alt="Sports Event" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-baseball-ball\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <span class="event-badge">SPORTS</span>
                 <div class="event-content">
@@ -857,7 +846,7 @@
             <!-- Theatre Play Event -->
             <div class="event-card">
                 <div class="event-image">
-                    <img src="https://picsum.photos/220/280?random=10" alt="Theatre Play" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-theater-masks\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/280?random=10" alt="Theatre Play" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-theater-masks\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <span class="event-badge">THEATRE</span>
                 <div class="event-content">
@@ -873,7 +862,7 @@
             <!-- Music Concert Event -->
             <div class="event-card">
                 <div class="event-image">
-                    <img src="https://picsum.photos/220/280?random=11" alt="EDM Concert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-headphones\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/280?random=11" alt="EDM Concert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-headphones\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <span class="event-badge">CONCERT</span>
                 <div class="event-content">
@@ -889,7 +878,7 @@
             <!-- Comedy Show Event 2 -->
             <div class="event-card">
                 <div class="event-image">
-                    <img src="https://picsum.photos/220/280?random=12" alt="Comedy Show 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-laugh\' style=\'font-size:48px\'></i>';">
+                    <img src="https://picsum.photos/220/280?random=12" alt="Comedy Show 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-laugh\' style=\'font-size:48px;color:#666\'></i>';">
                 </div>
                 <span class="event-badge">COMEDY</span>
                 <div class="event-content">
