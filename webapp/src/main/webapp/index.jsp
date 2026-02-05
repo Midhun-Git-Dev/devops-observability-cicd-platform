@@ -169,6 +169,8 @@
             position: relative;
             background-size: cover;
             background-position: center;
+            display: flex;
+            align-items: center;
         }
         
         .hero-slide::before {
@@ -179,6 +181,19 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(to top, #1a1a1a 0%, transparent 100%);
+        }
+        
+        /* Gradient backgrounds for hero slides */
+        .hero-slide:nth-child(1) {
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+        }
+        
+        .hero-slide:nth-child(2) {
+            background: linear-gradient(135deg, #1a1a1a 0%, #7c2d12 100%);
+        }
+        
+        .hero-slide:nth-child(3) {
+            background: linear-gradient(135deg, #1a1a1a 0%, #991b1b 100%);
         }
         
         .hero-content {
@@ -309,7 +324,19 @@
             width: 100%;
             height: 320px;
             object-fit: cover;
-            background-color: #333;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .card-content {
@@ -393,7 +420,19 @@
             width: 100%;
             height: 280px;
             object-fit: cover;
-            background-color: #333;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .event-badge {
@@ -405,6 +444,7 @@
             border-radius: 5px;
             font-size: 12px;
             font-weight: 600;
+            z-index: 10;
         }
         
         .event-content {
@@ -599,7 +639,7 @@
     <section class="hero-section">
         <div class="hero-slider" id="heroSlider">
             <!-- Slide 1 -->
-            <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x500/1a1a1a/dc2626?text=Now+Showing+-+Latest+Blockbusters');">
+            <div class="hero-slide">
                 <div class="hero-content">
                     <h1>Now Showing</h1>
                     <p>Book tickets for the latest blockbuster movies in theatres near you</p>
@@ -608,7 +648,7 @@
             </div>
             
             <!-- Slide 2 -->
-            <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x500/1a1a1a/dc2626?text=Upcoming+Events+-+Live+Concerts');">
+            <div class="hero-slide">
                 <div class="hero-content">
                     <h1>Live Concerts</h1>
                     <p>Experience the best live music performances and concerts</p>
@@ -617,7 +657,7 @@
             </div>
             
             <!-- Slide 3 -->
-            <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x500/1a1a1a/dc2626?text=Comedy+Shows+-+Laugh+Out+Loud');">
+            <div class="hero-slide">
                 <div class="hero-content">
                     <h1>Comedy Shows</h1>
                     <p>Laugh out loud with the funniest comedians in town</p>
@@ -644,7 +684,9 @@
         <div class="cards-grid">
             <!-- Movie Card 1 -->
             <div class="card">
-                <img src="https://via.placeholder.com/220x320/2a2a2a/dc2626?text=Movie+1" alt="Movie 1" class="card-image">
+                <div class="card-image">
+                    <img src="https://picsum.photos/220/320?random=1" alt="Movie 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">The Dark Knight Returns</h3>
                     <div class="card-meta">
@@ -661,7 +703,9 @@
             
             <!-- Movie Card 2 -->
             <div class="card">
-                <img src="https://via.placeholder.com/220x320/2a2a2a/dc2626?text=Movie+2" alt="Movie 2" class="card-image">
+                <div class="card-image">
+                    <img src="https://picsum.photos/220/320?random=2" alt="Movie 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Inception Dreams</h3>
                     <div class="card-meta">
@@ -678,7 +722,9 @@
             
             <!-- Movie Card 3 -->
             <div class="card">
-                <img src="https://via.placeholder.com/220x320/2a2a2a/dc2626?text=Movie+3" alt="Movie 3" class="card-image">
+                <div class="card-image">
+                    <img src="https://picsum.photos/220/320?random=3" alt="Movie 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Mumbai Diaries</h3>
                     <div class="card-meta">
@@ -695,7 +741,9 @@
             
             <!-- Movie Card 4 -->
             <div class="card">
-                <img src="https://via.placeholder.com/220x320/2a2a2a/dc2626?text=Movie+4" alt="Movie 4" class="card-image">
+                <div class="card-image">
+                    <img src="https://picsum.photos/220/320?random=4" alt="Movie 4" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Chennai Express 2</h3>
                     <div class="card-meta">
@@ -712,7 +760,9 @@
             
             <!-- Movie Card 5 -->
             <div class="card">
-                <img src="https://via.placeholder.com/220x320/2a2a2a/dc2626?text=Movie+5" alt="Movie 5" class="card-image">
+                <div class="card-image">
+                    <img src="https://picsum.photos/220/320?random=5" alt="Movie 5" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Mission Impossible 8</h3>
                     <div class="card-meta">
@@ -729,7 +779,9 @@
             
             <!-- Movie Card 6 -->
             <div class="card">
-                <img src="https://via.placeholder.com/220x320/2a2a2a/dc2626?text=Movie+6" alt="Movie 6" class="card-image">
+                <div class="card-image">
+                    <img src="https://picsum.photos/220/320?random=6" alt="Movie 6" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-film\' style=\'font-size:48px\'></i>';">
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Bangalore Days Redux</h3>
                     <div class="card-meta">
@@ -756,7 +808,9 @@
         <div class="cards-grid">
             <!-- Comedy Show Event -->
             <div class="event-card">
-                <img src="https://via.placeholder.com/220x280/2a2a2a/fbbf24?text=Comedy+Night" alt="Comedy Show" class="event-image">
+                <div class="event-image">
+                    <img src="https://picsum.photos/220/280?random=7" alt="Comedy Show" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-microphone\' style=\'font-size:48px\'></i>';">
+                </div>
                 <span class="event-badge">COMEDY</span>
                 <div class="event-content">
                     <h3 class="event-title">Stand-Up Comedy Night</h3>
@@ -770,7 +824,9 @@
             
             <!-- Live Concert Event -->
             <div class="event-card">
-                <img src="https://via.placeholder.com/220x280/2a2a2a/8b5cf6?text=Rock+Concert" alt="Live Concert" class="event-image">
+                <div class="event-image">
+                    <img src="https://picsum.photos/220/280?random=8" alt="Live Concert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-music\' style=\'font-size:48px\'></i>';">
+                </div>
                 <span class="event-badge">CONCERT</span>
                 <div class="event-content">
                     <h3 class="event-title">Rock Music Festival</h3>
@@ -784,7 +840,9 @@
             
             <!-- Sports Event -->
             <div class="event-card">
-                <img src="https://via.placeholder.com/220x280/2a2a2a/10b981?text=Cricket+Match" alt="Sports Event" class="event-image">
+                <div class="event-image">
+                    <img src="https://picsum.photos/220/280?random=9" alt="Sports Event" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-baseball-ball\' style=\'font-size:48px\'></i>';">
+                </div>
                 <span class="event-badge">SPORTS</span>
                 <div class="event-content">
                     <h3 class="event-title">IPL 2026: RCB vs MI</h3>
@@ -798,7 +856,9 @@
             
             <!-- Theatre Play Event -->
             <div class="event-card">
-                <img src="https://via.placeholder.com/220x280/2a2a2a/ec4899?text=Theatre+Play" alt="Theatre Play" class="event-image">
+                <div class="event-image">
+                    <img src="https://picsum.photos/220/280?random=10" alt="Theatre Play" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-theater-masks\' style=\'font-size:48px\'></i>';">
+                </div>
                 <span class="event-badge">THEATRE</span>
                 <div class="event-content">
                     <h3 class="event-title">Shakespeare's Hamlet</h3>
@@ -812,7 +872,9 @@
             
             <!-- Music Concert Event -->
             <div class="event-card">
-                <img src="https://via.placeholder.com/220x280/2a2a2a/f59e0b?text=EDM+Night" alt="EDM Concert" class="event-image">
+                <div class="event-image">
+                    <img src="https://picsum.photos/220/280?random=11" alt="EDM Concert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-headphones\' style=\'font-size:48px\'></i>';">
+                </div>
                 <span class="event-badge">CONCERT</span>
                 <div class="event-content">
                     <h3 class="event-title">EDM Night ft. DJ Snake</h3>
@@ -826,7 +888,9 @@
             
             <!-- Comedy Show Event 2 -->
             <div class="event-card">
-                <img src="https://via.placeholder.com/220x280/2a2a2a/fbbf24?text=Comedy+Special" alt="Comedy Show 2" class="event-image">
+                <div class="event-image">
+                    <img src="https://picsum.photos/220/280?random=12" alt="Comedy Show 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-laugh\' style=\'font-size:48px\'></i>';">
+                </div>
                 <span class="event-badge">COMEDY</span>
                 <div class="event-content">
                     <h3 class="event-title">The Laughter Factory</h3>
