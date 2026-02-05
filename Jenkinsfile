@@ -79,4 +79,59 @@ pipeline {
             }
         }
     }
+
+    /* =======================
+       SLACK NOTIFICATIONS
+       ======================= */
+    post {
+
+        started {
+            slackSend(
+                color: '#439FE0',
+                message: """
+🚀 *BUILD STARTED*
+*Job:* ${env.JOB_NAME}
+*Build:* #${env.BUILD_NUMBER}
+*URL:* ${env.BUILD_URL}
+"""
+            )
+        }
+
+        success {
+            slackSend(
+                color: 'good',
+                message: """
+✅ *BUILD SUCCESS*
+*Job:* ${env.JOB_NAME}
+*Build:* #${env.BUILD_NUMBER}
+*SonarQube:* PASSED
+*URL:* ${env.BUILD_URL}
+"""
+            )
+        }
+
+        failure {
+            slackSend(
+                color: 'danger',
+                message: """
+❌ *BUILD FAILED*
+*Job:* ${env.JOB_NAME}
+*Build:* #${env.BUILD_NUMBER}
+*Check Logs:* ${env.BUILD_URL}
+"""
+            )
+        }
+
+        unstable {
+            slackSend(
+                color: 'warning',
+                message: """
+⚠️ *BUILD UNSTABLE*
+*Job:* ${env.JOB_NAME}
+*Build:* #${env.BUILD_NUMBER}
+*URL:* ${env.BUILD_URL}
+"""
+            )
+        }
+    }
 }
