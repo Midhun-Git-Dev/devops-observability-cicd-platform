@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShowTime – Movies, Events & More</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>ShowTime - Book Movie & Event Tickets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,396 +14,535 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
-            color: #f5f5f5;
-            line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #ffffff;
+            line-height: 1.6;
         }
 
-        /* Header */
+        /* Header Styles */
         header {
-            background: #000;
-            position: sticky;
+            background: linear-gradient(135deg, #1a0000 0%, #2d0000 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            box-shadow: 0 2px 20px rgba(255, 0, 0, 0.3);
         }
 
-        .top-nav {
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 5vw;
+            padding: 0 2rem;
             flex-wrap: wrap;
-            gap: 15px;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #ff2d55;
-            letter-spacing: -0.5px;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0040, #ff4081);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
         }
 
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        .location-select {
-            background: #111;
-            color: #ddd;
-            border: 1px solid #333;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 14px;
-            cursor: pointer;
+        .location-selector select {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
         }
 
         .search-container {
-            position: relative;
             flex: 1;
-            max-width: 480px;
+            max-width: 500px;
+            margin: 0 2rem;
+            position: relative;
         }
 
-        .search-input {
+        .search-box {
             width: 100%;
-            padding: 11px 16px 11px 44px;
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: white;
-            font-size: 15px;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: none;
+            border-radius: 25px;
+            background: #333;
+            color: #fff;
+            font-size: 1rem;
         }
 
-        .search-input::placeholder {
-            color: #888;
+        .search-box::placeholder {
+            color: #aaa;
         }
 
         .search-icon {
             position: absolute;
-            left: 16px;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #888;
+            color: #ff4081;
         }
 
-        .auth-btn {
-            background: #ff2d55;
-            color: white;
-            border: none;
-            padding: 9px 22px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .auth-btn:hover {
-            background: #d91e45;
-        }
-
-        /* Hero Banner */
-        .hero {
-            height: 460px;
-            background: linear-gradient(90deg, #0f1a36 45%, transparent 70%);
-            position: relative;
+        .auth-buttons {
             display: flex;
-            align-items: center;
+            gap: 1rem;
         }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #ff4081;
+        }
+
+        .btn-login:hover {
+            background: #ff4081;
+        }
+
+        .btn-signup {
+            background: linear-gradient(45deg, #ff0040, #ff4081);
+            color: #fff;
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x800/ff0040/ffffff?text=NOW+SHOWING'); }
+        .hero-slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x800/ff4081/ffffff?text=UPCOMING+BLOCKBUSTERS'); }
+        .hero-slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x800/2d0000/ffffff?text=LIVE+EVENTS'); }
 
         .hero-content {
-            padding-left: 7vw;
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 52px;
-            font-weight: 900;
-            line-height: 1.05;
-            margin-bottom: 16px;
-        }
-
-        .hero-subtitle {
-            font-size: 22px;
-            color: #ccc;
-            margin-bottom: 28px;
-        }
-
-        .hero-poster {
             position: absolute;
-            right: 7vw;
             top: 50%;
+            left: 5%;
             transform: translateY(-50%);
-            width: 320px;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            max-width: 500px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-category {
+            background: linear-gradient(45deg, #ff0040, #ff4081);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         /* Sections */
         .section {
-            padding: 60px 7vw;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .section-title {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            color: #fff;
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ff4081, #ff0040);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .cards-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .card {
-            background: #111;
-            border-radius: 12px;
+            background: #1a1a1a;
+            border-radius: 15px;
             overflow: hidden;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(255,45,85,0.22);
+            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.3);
         }
 
-        .card img {
+        .card-img {
             width: 100%;
-            height: 310px;
-            object-fit: cover;
+            height: 350px;
+            background-size: cover;
+            background-position: center;
         }
 
-        .card-body {
-            padding: 14px 12px;
-            text-align: center;
+        .card-movie1 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/ff0040/ffffff?text=MOVIE+1'); }
+        .card-movie2 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/4080ff/ffffff?text=MOVIE+2'); }
+        .card-movie3 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/ff8040/ffffff?text=MOVIE+3'); }
+        .card-movie4 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/40ff80/ffffff?text=MOVIE+4'); }
+        .card-movie5 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/8040ff/ffffff?text=MOVIE+5'); }
+        .card-movie6 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x450/ff4080/ffffff?text=MOVIE+6'); }
+
+        .card-event1 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/ff4081/000000?text=COMEDY'); }
+        .card-event2 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/4080ff/000000?text=CONCERT'); }
+        .card-event3 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/40ff80/000000?text=SPORTS'); }
+        .card-event4 .card-img { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/300x350/ff8040/000000?text=THEATRE'); }
+
+        .card-content {
+            padding: 1.5rem;
         }
 
-        .card-title {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
         }
 
         .card-meta {
-            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
             color: #aaa;
-            margin-bottom: 10px;
         }
 
-        .rating-badge {
-            background: #ff2d55;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            display: inline-block;
-            margin: 6px 0;
+        .rating {
+            background: #ff4081;
+            color: #fff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
-        .btn-book {
-            background: #ff2d55;
-            border: none;
+        .book-btn {
             width: 100%;
-            padding: 12px;
-            color: white;
-            font-weight: 600;
-            border-radius: 0 0 12px 12px;
+            background: linear-gradient(45deg, #ff0040, #ff4081);
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 25px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
         }
 
-        .btn-book:hover {
-            background: #d91e45;
+        .book-btn:hover {
+            transform: scale(1.05);
         }
 
         /* Footer */
         footer {
-            background: #000;
-            padding: 50px 7vw 30px;
+            background: #111;
+            padding: 3rem 2rem 1rem;
             text-align: center;
-            color: #888;
-            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: #bbb;
-            margin: 0 16px;
+            color: #aaa;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: #ff2d55;
+            color: #ff4081;
         }
 
         .social-icons {
-            margin: 24px 0 16px;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
-        .social-icons i {
-            font-size: 22px;
-            margin: 0 14px;
-            color: #ff2d55;
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s ease;
         }
 
-        /* Responsive */
-        @media (max-width: 1100px) {
-            .hero { height: 400px; }
-            .hero-title { font-size: 42px; }
-            .hero-poster { right: 5vw; width: 280px; }
+        .social-icons a:hover {
+            background: #ff4081;
+            transform: translateY(-3px);
         }
 
-        @media (max-width: 900px) {
-            .top-nav {
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
                 flex-direction: column;
-                gap: 16px;
-                padding: 16px 5vw;
+                gap: 1rem;
+                padding: 1rem;
             }
+
             .search-container {
+                margin: 0;
                 order: -1;
                 width: 100%;
-                max-width: none;
             }
-            .nav-controls {
-                justify-content: center;
-                width: 100%;
+
+            .auth-buttons {
+                order: -1;
             }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
             .hero {
-                background: #0f1a36;
-                text-align: center;
+                height: 50vh;
             }
-            .hero-content {
-                padding: 0 5vw;
+
+            .hero-slide {
+                height: 50vh;
             }
-            .hero-poster {
-                position: static;
-                margin: 30px auto;
-                transform: none;
+
+            .card-img {
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Header / Navbar -->
+    <!-- Header/Navbar -->
     <header>
-        <div class="top-nav">
-            <div class="logo">ShowTime</div>
-
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search for Movies, Events, Plays, Sports">
-            </div>
-
-            <div class="nav-controls">
-                <select class="location-select">
+        <nav>
+            <a href="#" class="logo">ShowTime</a>
+            
+            <div class="location-selector">
+                <select>
                     <option>Bangalore</option>
                     <option>Chennai</option>
                     <option>Hyderabad</option>
                     <option>Mumbai</option>
                 </select>
-                <button class="auth-btn">Login / Signup</button>
             </div>
-        </div>
+
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-box" placeholder="Search for Movies, Events, Plays, Sports">
+            </div>
+
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-login">Login</a>
+                <a href="#" class="btn btn-signup">Sign Up</a>
+            </div>
+        </nav>
     </header>
 
     <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-content">
-            <div class="hero-title">Now Showing</div>
-            <div class="hero-subtitle">Upcoming Movies & Events</div>
+    <section class="hero">
+        <div class="hero-slider" id="heroSlider">
+            <div class="hero-slide">
+                <div class="hero-content">
+                    <div class="hero-category">NOW SHOWING</div>
+                    <h1>Blockbuster Season</h1>
+                    <p>Experience the biggest movies in theaters near you!</p>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <div class="hero-content">
+                    <div class="hero-category">UPCOMING</div>
+                    <h1>Can't Miss Movies</h1>
+                    <p>Get ready for the next big releases!</p>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <div class="hero-content">
+                    <div class="hero-category">LIVE EVENTS</div>
+                    <h1>Concerts & Shows</h1>
+                    <p>Live entertainment at its best!</p>
+                </div>
+            </div>
         </div>
-        <img class="hero-poster" src="https://picsum.photos/320/480?random=88" alt="Featured Movie">
-    </div>
+    </section>
 
     <!-- Movies Section -->
     <section class="section">
-        <h2 class="section-title">Movies</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=11" alt="Movie 1">
-                <div class="card-body">
-                    <div class="card-title">Movie Title 1</div>
-                    <div class="card-meta">Action, Thriller • English</div>
-                    <div class="rating-badge">8.5</div>
-                    <button class="btn-book">Book Tickets</button>
+        <h2>Now Showing Movies</h2>
+        <div class="grid">
+            <div class="card card-movie1">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Action Thriller</h3>
+                    <div class="card-meta">
+                        <span>Action, Thriller</span>
+                        <span class="rating">8.5/10</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: #aaa;">Hindi, English</span>
+                    <button class="book-btn">Book Tickets</button>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=12" alt="Movie 2">
-                <div class="card-body">
-                    <div class="card-title">Movie Title 2</div>
-                    <div class="card-meta">Comedy, Drama • Hindi</div>
-                    <div class="rating-badge">7.8</div>
-                    <button class="btn-book">Book Tickets</button>
+            <div class="card card-movie2">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Romantic Drama</h3>
+                    <div class="card-meta">
+                        <span>Romance, Drama</span>
+                        <span class="rating">7.9/10</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: #aaa;">Tamil, Telugu</span>
+                    <button class="book-btn">Book Tickets</button>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=13" alt="Movie 3">
-                <div class="card-body">
-                    <div class="card-title">Movie Title 3</div>
-                    <div class="card-meta">Sci-Fi, Adventure • English</div>
-                    <div class="rating-badge">9.1</div>
-                    <button class="btn-book">Book Tickets</button>
+            <div class="card card-movie3">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Sci-Fi Adventure</h3>
+                    <div class="card-meta">
+                        <span>Sci-Fi, Adventure</span>
+                        <span class="rating">9.2/10</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: #aaa;">English, Hindi</span>
+                    <button class="book-btn">Book Tickets</button>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=14" alt="Movie 4">
-                <div class="card-body">
-                    <div class="card-title">Movie Title 4</div>
-                    <div class="card-meta">Horror, Mystery • Tamil</div>
-                    <div class="rating-badge">6.9</div>
-                    <button class="btn-book">Book Tickets</button>
+            <div class="card card-movie4">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Comedy</h3>
+                    <div class="card-meta">
+                        <span>Comedy</span>
+                        <span class="rating">8.1/10</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: #aaa;">Kannada, Hindi</span>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
+            </div>
+            <div class="card card-movie5">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Horror</h3>
+                    <div class="card-meta">
+                        <span>Horror, Thriller</span>
+                        <span class="rating">7.6/10</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: #aaa;">Malayalam</span>
+                    <button class="book-btn">Book Tickets</button>
+                </div>
+            </div>
+            <div class="card card-movie6">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Family Drama</h3>
+                    <div class="card-meta">
+                        <span>Drama, Family</span>
+                        <span class="rating">8.7/10</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: #aaa;">Telugu, Tamil</span>
+                    <button class="book-btn">Book Tickets</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Events Section -->
-    <section class="section">
-        <h2 class="section-title">Events</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=21" alt="Comedy">
-                <div class="card-body">
-                    <div class="card-title">Comedy Shows</div>
-                    <div class="card-meta">Stand-up & Live Comedy</div>
-                    <div class="rating-badge">Live</div>
-                    <button class="btn-book">Book Tickets</button>
+    <section class="section" style="background: #1a1a1a;">
+        <h2>Live Events & Experiences</h2>
+        <div class="grid">
+            <div class="card card-event1">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Stand-up Comedy</h3>
+                    <p>Laugh out loud with top comedians</p>
+                    <button class="book-btn">Book Now</button>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=22" alt="Concert">
-                <div class="card-body">
-                    <div class="card-title">Live Concerts</div>
-                    <div class="card-meta">Music Festivals & Gigs</div>
-                    <div class="rating-badge">Live</div>
-                    <button class="btn-book">Book Tickets</button>
+            <div class="card card-event2">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Live Concerts</h3>
+                    <p>Top artists performing live</p>
+                    <button class="book-btn">Book Now</button>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=23" alt="Sports">
-                <div class="card-body">
-                    <div class="card-title">Sports Events</div>
-                    <div class="card-meta">Cricket, Football & More</div>
-                    <div class="rating-badge">Live</div>
-                    <button class="btn-book">Book Tickets</button>
+            <div class="card card-event3">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Sports Events</h3>
+                    <p>Live sports action</p>
+                    <button class="book-btn">Book Now</button>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://picsum.photos/220/320?random=24" alt="Theatre">
-                <div class="card-body">
-                    <div class="card-title">Theatre Plays</div>
-                    <div class="card-meta">Drama & Performances</div>
-                    <div class="rating-badge">Live</div>
-                    <button class="btn-book">Book Tickets</button>
+            <div class="card card-event4">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <h3>Theatre Plays</h3>
+                    <p>Captivating stage performances</p>
+                    <button class="book-btn">Book Now</button>
                 </div>
             </div>
         </div>
@@ -411,37 +550,51 @@
 
     <!-- Footer -->
     <footer>
-        <div class="social-icons">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-youtube"></i>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p style="color: #aaa; margin-top: 2rem;">&copy; 2026 ShowTime. All rights reserved. | Made with ❤️ in Bangalore</p>
         </div>
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Privacy Policy</a>
-        </div>
-        <p style="margin-top: 24px;">© 2026 ShowTime. All rights reserved.</p>
     </footer>
 
-    <!-- Minimal banner auto-change (optional) -->
     <script>
-        // You can add more images here if you want a rotating hero banner
-        const posters = [
-            "https://picsum.photos/320/480?random=88",
-            "https://picsum.photos/320/480?random=89",
-            "https://picsum.photos/320/480?random=90"
-        ];
-        let idx = 0;
-        const heroPoster = document.querySelector('.hero-poster');
+        // Simple hero slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
 
-        setInterval(() => {
-            idx = (idx + 1) % posters.length;
-            heroPoster.src = posters[idx];
-        }, 6000);
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            document.getElementById('heroSlider').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Book button interactions
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('🎟️ Redirecting to booking page... (Demo)');
+            });
+        });
+
+        // Search functionality (demo)
+        document.querySelector('.search-box').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                alert('🔍 Searching for: ' + this.value);
+            }
+        });
     </script>
-
 </body>
 </html>
